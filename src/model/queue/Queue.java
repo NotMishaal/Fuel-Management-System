@@ -2,12 +2,11 @@ package model.queue;
 
 import model.customer.Customer;
 
-
 public class Queue {
     private String queueType;
     private int queueNumber;
     private QueueManager qms;
-    private Customer[] customers = new Customer[9]; // only 10 slots available in a queue
+    private Customer[] customers = new Customer[10]; // only 10 slots available in a queue
 
     // Main constructor
     public Queue(String queueType, int queueNumber) {
