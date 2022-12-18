@@ -1,4 +1,19 @@
 package model.staff;
 
-public class Attendant {
+import model.customer.Customer;
+import model.dispenser.FuelDispenseManager;
+
+import java.util.ArrayList;
+
+public class Attendant extends Staff{
+    private ArrayList<Customer> listOfCustomers;
+
+    public Attendant(String staffID, String name, ArrayList<Customer> listOfCustomers) {
+        super(staffID, name);
+        this.listOfCustomers = listOfCustomers;
+    }
+
+    public void dispense(FuelDispenseManager d,double quantity){
+        //Dispense fuel
+    }
 }
