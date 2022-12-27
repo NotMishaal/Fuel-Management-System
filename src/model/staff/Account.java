@@ -2,6 +2,7 @@ package model.staff;
 
 import model.customer.Customer;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,71 @@ public class Account {
         this.payment = payment;
         this.customersServed = customersServed;
         this.accountant = accountant;
+    }
+
+    public static void main(String[] args) {
+        //This is to create the database
+        String url = "jdbc:mysql://localhost:3306/account";
+        String userName = "root";
+        String password = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection connection = DriverManager.getConnection(url,userName,password);
+
+            Statement statement = connection.createStatement();
+
+            addDataToTheAccountTable(12,"Yujith", "Inuka", 5000, 20);
+            readDataFromTheAccountTable(url,userName,password);
+
+            //Closing the connection
+            connection.close();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    private static void readDataFromTheAccountTable(String url,String userName, String password){
+        //This is to retrieve the data from the account table which is in the Account DB
+        try {
+            Connection connection = DriverManager.getConnection(url,userName,password);
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from account");
+
+            //Displaying column names
+            ResultSetMetaData rsMetaData = resultSet.getMetaData();
+            System.out.println(rsMetaData.getColumnName(1) + " " + rsMetaData.getColumnName(2) + " " + rsMetaData.getColumnName(3) + " " + rsMetaData.getColumnName(4) + " " + rsMetaData.getColumnName(5));
+
+            //Displaying the data in the table
+            while (resultSet.next()){
+                System.out.println(resultSet.getInt(1) + "  " + resultSet.getString(2) + "  " + resultSet.getString(3) + "  " + resultSet.getDouble(4) + "  " + resultSet.getDouble(5));
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    private static void addDataToTheAccountTable(int accountID,String accountantName,String customerName,double paidAmount,double fuelDispensed){
+        //This is to add new data to the account table
+        String url = "jdbc:mysql://localhost:3306/account";
+        try {
+            Connection connection = DriverManager.getConnection(url,"root","");
+            Statement statement = connection.createStatement();
+            String query = "insert into account (Account_ID,Accountant_Name,Customer,Paid_Amount,Fuel_Dispensed) values(?,?,?,?,?)";
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setInt(1,accountID);
+            preparedStmt.setString(2,accountantName);
+            preparedStmt.setString(3,customerName);
+            preparedStmt.setDouble(4,paidAmount);
+            preparedStmt.setDouble(5,fuelDispensed);
+            preparedStmt.execute();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void displayAccountSummery(){
