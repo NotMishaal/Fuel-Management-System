@@ -18,9 +18,9 @@ public class Customer {
         // Amount due is calculated from ticket and fuel price.
         double amountDue = 0;
         if (fuelType == 0){
-            amountDue = ticket.getFuelDispensed() * 1; //TODO: Replace 1 with octane price per litre.
+            amountDue = ticket.getFuelDispensed() * 450;
         } else if (fuelType == 1){
-            amountDue = ticket.getFuelDispensed() * 2; //TODO: Replace 2 with diesel price per litre.
+            amountDue = ticket.getFuelDispensed() * 430;
         }
 
         // Validate if payment is sufficient.
