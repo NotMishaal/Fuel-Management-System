@@ -2,11 +2,11 @@ package controller;
 
 import model.customer.Customer;
 import model.queue.Queue;
+import model.staff.*;
 
 import java.util.InputMismatchException;
 
-import static view.menu.Menu.customerMenu;
-import static view.menu.Menu.userSelection;
+import static view.menu.Menu.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -95,8 +95,41 @@ public class Main {
                             }
                         }
                     case 2: //user is a staff member
-                        System.out.println("sta");
-                        break;
+                        while (true) {
+                            switch (staffMenu()){
+                                case 1: // attendant
+                                    Attendant attendant = new Attendant("ATT0001", "Luke Emia");
+                                    switch (attendantMenu()){
+                                        case 1: // dispense fuel
+                                            break;
+                                        case 2: //quit
+                                            break;
+                                    }
+                                    break;
+                                case 2: // accountant
+                                    Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
+                                    switch (accountantMenu()){
+                                        case 1: // view accounts
+                                            break;
+                                        case 2: // modify accounts
+                                            break;
+                                        case 3: // quit
+                                            break;
+                                    }
+                                    break;
+                                case 3: // manager
+                                    Manager manager = new Manager("MGR0001", "a");
+                                    switch (managerMenu()){
+                                        case 1: // verify repo capacity
+                                            break;
+                                        case 2: // install new dispenser
+                                            break;
+                                        case 3: //quit
+                                            break;
+                                    }
+                                    break;
+                            }
+                        }
                     case 3: //quit
                         System.exit(0);
                         break;

@@ -8,9 +8,8 @@ import java.util.ArrayList;
 public class Accountant extends Staff{
     private ArrayList<Account> listOfAccounts;
 
-    public Accountant(String staffID, String name, ArrayList<Account> listOfAccounts) {
+    public Accountant(String staffID, String name) {
         super(staffID, name);
-        this.listOfAccounts = listOfAccounts;
     }
     public boolean addAccount(String nameOfTheAccountTable){
         //Making a connection

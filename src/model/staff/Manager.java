@@ -11,11 +11,8 @@ public class Manager extends Staff{
     private ArrayList<DieselDispenser> listOfDieselDispenser;
     private ArrayList<OctaneDispenser> listOfOctaneDispenser;
 
-    public Manager(String staffID, String name, ArrayList<Repository> listOfRepository, ArrayList<DieselDispenser> listOfDieselDispenser, ArrayList<OctaneDispenser> listOfOctaneDispenser) {
+    public Manager(String staffID, String name) {
         super(staffID, name);
-        this.listOfRepository = listOfRepository;
-        this.listOfDieselDispenser = listOfDieselDispenser;
-        this.listOfOctaneDispenser = listOfOctaneDispenser;
     }
 
     public boolean installDispenser(DieselDispenser dieselDispenser){
