@@ -6,8 +6,8 @@ import model.customer.Ticket;
 import java.util.ArrayList;
 
 public class QueueManager {
-    private ArrayList<Ticket> tickets;
-    private ArrayList<Queue> queues;
+    private ArrayList<Ticket> tickets = new ArrayList<>();
+    private ArrayList<Queue> queues = new ArrayList<>();
 
 
     // Getters and setters
