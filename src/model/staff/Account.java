@@ -2,14 +2,10 @@ package model.staff;
 
 import model.customer.Customer;
 
-import javax.xml.stream.events.Characters;
 import java.sql.*;
-import java.sql.Date;
-import java.text.CharacterIterator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Account {
     private String accountID;
