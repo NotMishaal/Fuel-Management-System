@@ -55,21 +55,6 @@ public class OctaneDispenser implements FuelDispenseManager{
         this.octaneRepository = octaneRepository;
     }
 
-
-    // Overriding methods from super interface class
-    @Override
-    public void getStats() {
-        /*
-         * Method to print statistics of the following
-         * 1) The total fuel dispensed per vehicle category type per fuel type
-         * 2) The vehicle that received the largest amount of fuel for the day and the type of
-         * fuel received.
-         * 3) Print the total number of vehicles served by each dispenser along with the
-         * amounts of fuel and the total income per dispenser as well as the total income of
-         * the Gas Station per day per fuel type and the remaining stock at close.
-         */
-    }
-
     @Override
     public void dispenseFuel(double quantity) {
         // Method to dispense octane to customer
