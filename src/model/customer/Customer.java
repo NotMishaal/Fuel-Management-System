@@ -1,5 +1,7 @@
 package model.customer;
 
+import model.queue.Queue;
+
 public class Customer {
     private int vehicleType;
     /* Vehicle Type:
@@ -13,6 +15,7 @@ public class Customer {
     // Fuel Type: 0 -> Octane, 1 -> Diesel
     private String licensePlate;
     private Ticket ticket;
+    private Queue queue;
 
     public boolean makePayment(double payment){
         // Amount due is calculated from ticket and fuel price.
