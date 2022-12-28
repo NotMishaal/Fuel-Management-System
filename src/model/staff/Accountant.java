@@ -1,5 +1,7 @@
 package model.staff;
 
+import model.customer.Customer;
+
 import java.util.ArrayList;
 
 public class Accountant extends Staff{
@@ -14,9 +16,11 @@ public class Accountant extends Staff{
         int indexOfTheAccount = listOfAccounts.indexOf(account); // This is to check if the object parsed exist in the list
         if (indexOfTheAccount == -1){
             //If the object does not exist in the list
+            System.out.println("Account not found");
             return false;
         }else {
             listOfAccounts.remove(indexOfTheAccount);
+            System.out.println("Account removed successfully");
             return true;
         }
     }
@@ -26,9 +30,22 @@ public class Accountant extends Staff{
         if (indexOfTheAccount == -1){
             //If the object does not exist in the list
             this.listOfAccounts.add(account);
+            System.out.println("Account added successfully");
             return true;
         }else {
+            System.out.println("Account already exists");
             return false;
         }
+    }
+
+    public void removeCustomerFromAnAccount(Account account,String customerName){
+        account.removeCustomer(customerName);
+    }
+    public void addCustomerToAnAccount(Account account, Customer customer, Double amount){
+        account.addCustomer(customer,amount);
+    }
+
+    public void displayAccountSummery(Account account){
+        account.displayAccountSummery();
     }
 }
