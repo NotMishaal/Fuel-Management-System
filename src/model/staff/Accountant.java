@@ -24,6 +24,9 @@ public class Accountant extends Staff{
                 + "	Paid_Amount double NOT NULL \n"
                 + "	Fuel_Dispensed double NOT NULL \n"
                 + "	Pumped_Date date NOT NULL \n"
+                + "	Vehicle_Category_Type varchar NOT NULL \n"
+                + "	Fuel_Type varchar NOT NULL \n"
+                + "	Dispenser_ID int NOT NULL \n"
                 + ");";
 
         try {
