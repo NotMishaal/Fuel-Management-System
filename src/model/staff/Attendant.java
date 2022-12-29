@@ -8,9 +8,8 @@ import java.util.ArrayList;
 public class Attendant extends Staff{
     private ArrayList<Customer> listOfCustomers;
 
-    public Attendant(String staffID, String name, ArrayList<Customer> listOfCustomers) {
+    public Attendant(String staffID, String name) {
         super(staffID, name);
-        this.listOfCustomers = listOfCustomers;
     }
 
     public void dispense(FuelDispenseManager d,double quantity,Customer customer){
