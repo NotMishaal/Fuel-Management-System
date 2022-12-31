@@ -43,13 +43,13 @@ public class QueueManager {
         return queues.remove(queue);
     }
 
-    public boolean issueTicket(Customer customer){
+    public void issueTicket(Customer customer, Ticket ticket){
         // Issues a ticket to a customer
-        return false;
+        customer.setTicket(ticket);
     }
 
-    public boolean assignToQueue(Customer customer){
+    public boolean assignToQueue(Customer customer, Queue queue){
         // Assigns a customer to a queue
-        return false;
+        return queue.enqueue(customer);
     }
 }
