@@ -1,16 +1,21 @@
 package controller;
 
 import model.customer.Customer;
+import model.dispenser.DieselDispenser;
+import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
+import model.repository.DieselRepository;
+import model.repository.OctaneRepository;
 import model.staff.*;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import static view.menu.Menu.*;
 
 public class Main {
     public static void main(String[] args) {
-        // initialization
+        // Initialize queues
         //TODO: init all relevant objects
         Queue petrolQueue1 = new Queue("Petrol", 1);
         Queue petrolQueue2 = new Queue("Petrol", 2);
@@ -19,6 +24,32 @@ public class Main {
         Queue dieselQueue1 = new Queue("Diesel", 5);
         Queue dieselQueue2 = new Queue("Diesel", 6);
         Queue dieselQueue3 = new Queue("Diesel", 7);
+
+        // Initialize dispensers
+        DieselDispenser dieselDispenser1 = new DieselDispenser(1);
+        DieselDispenser dieselDispenser2 = new DieselDispenser(2);
+        DieselDispenser dieselDispenser3 = new DieselDispenser(3);
+        OctaneDispenser octaneDispenser1 = new OctaneDispenser(1);
+        OctaneDispenser octaneDispenser2 = new OctaneDispenser(2);
+        OctaneDispenser octaneDispenser3 = new OctaneDispenser(3);
+        OctaneDispenser octaneDispenser4 = new OctaneDispenser(4);
+
+        // Create a list of dispensers to add to the repository
+        ArrayList<DieselDispenser> dieselDispensers = new ArrayList<>();
+        ArrayList<OctaneDispenser> octaneDispensers = new ArrayList<>();
+
+        // Add objects to the dispensers list
+        dieselDispensers.add(dieselDispenser1);
+        dieselDispensers.add(dieselDispenser2);
+        dieselDispensers.add(dieselDispenser3);
+        octaneDispensers.add(octaneDispenser1);
+        octaneDispensers.add(octaneDispenser2);
+        octaneDispensers.add(octaneDispenser3);
+        octaneDispensers.add(octaneDispenser4);
+
+        // Initialize repositories
+        DieselRepository dieselRepository = new DieselRepository(dieselDispensers, 430);
+        OctaneRepository octaneRepository = new OctaneRepository(octaneDispensers, 450);
 
 
         // user input

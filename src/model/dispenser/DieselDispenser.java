@@ -11,9 +11,8 @@ public class DieselDispenser implements FuelDispenseManager{
     private boolean isSuspended = false;
 
     // Main constructor
-    public DieselDispenser(int dispenserID, double fuelDispensed) {
+    public DieselDispenser(int dispenserID) {
         this.dispenserID = dispenserID;
-        this.fuelDispensed = fuelDispensed;
     }
 
 

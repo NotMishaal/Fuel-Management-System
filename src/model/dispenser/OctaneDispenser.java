@@ -10,9 +10,8 @@ public class OctaneDispenser implements FuelDispenseManager{
 
 
     // Constructor
-    public OctaneDispenser(int dispenserID, double fuelDispensed) {
+    public OctaneDispenser(int dispenserID) {
         this.dispenserID = dispenserID;
-        this.fuelDispensed = fuelDispensed;
     }
 
     // Getters and setters

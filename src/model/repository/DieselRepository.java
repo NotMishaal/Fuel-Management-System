@@ -69,6 +69,6 @@ public class DieselRepository extends Repository{
 
     public DieselRepository(ArrayList<DieselDispenser> listOfDieselDispenser,double price) {
         this.listOfDieselDispenser = listOfDieselDispenser;
-        this.price = 430;
+        this.price = price;
     }
 }

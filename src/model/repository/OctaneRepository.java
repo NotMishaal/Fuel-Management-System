@@ -69,6 +69,6 @@ public class OctaneRepository extends Repository{
 
     public OctaneRepository(ArrayList<OctaneDispenser> listOfOctaneDispenser, double price) {
         this.listOfOctaneDispenser = listOfOctaneDispenser;
-        this.price=450;
+        this.price=price;
     }
 }
