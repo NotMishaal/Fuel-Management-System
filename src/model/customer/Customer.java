@@ -15,6 +15,7 @@ public class Customer {
     // Fuel Type: 0 -> Octane, 1 -> Diesel
     private String licensePlate;
     private Ticket ticket;
+
     private Queue queue;
 
     public boolean makePayment(double payment){
