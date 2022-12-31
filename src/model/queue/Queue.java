@@ -6,7 +6,7 @@ public class Queue {
     private String queueType;
     private int queueNumber;
     private QueueManager qms;
-    private int size = 10;
+    private final int size = 10;
     private Customer[] customers = new Customer[size]; // only 10 slots available in a queue
     private int front, rear;
 
@@ -30,7 +30,7 @@ public class Queue {
         // Method to remove customer from queue
         Customer customer;
         if (isEmpty()){
-            System.out.println("Queue is Empty");
+            System.out.println("Queue "+this.getQueueNumber()+" is Empty");
             return null;
         } else {
             customer = customers[front];
@@ -47,18 +47,12 @@ public class Queue {
 
     public boolean isFull(){
         // Method to validate if queue is full
-        if (front == 0 && rear == size-1){
-            return true;
-        }
-        return false;
+        return front == 0 && rear == size - 1;
     }
 
     public boolean isEmpty(){
         // Method to validate if queue is empty
-        if (front == -1)
-            return true;
-        else
-            return false;
+        return front == -1;
     }
 
     public void display(){
@@ -113,5 +107,13 @@ public class Queue {
 
     public void setCustomers(Customer[] customers) {
         this.customers = customers;
+    }
+
+    public int getFront() {
+        return front;
+    }
+
+    public int getRear() {
+        return rear;
     }
 }

@@ -81,4 +81,12 @@ public class Customer {
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
+
+    public Queue getQueue() {
+        return queue;
+    }
+
+    public void setQueue(Queue queue) {
+        this.queue = queue;
+    }
 }

@@ -127,13 +127,29 @@ public class Main {
                         while (true) {
                             switch (staffMenu()) {
                                 case 1 -> { // attendant
-                                    Attendant attendant = new Attendant("ATT0001", "Luke Emia");
+                                    Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
+                                    Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
+
+                                    petrolAttendant.addQueue(petrolQueue1);
+                                    petrolAttendant.addQueue(petrolQueue2);
+                                    petrolAttendant.addQueue(petrolQueue3);
+                                    petrolAttendant.addQueue(petrolQueue4);
+
+                                    dieselAttendant.addQueue(dieselQueue1);
+                                    dieselAttendant.addQueue(dieselQueue2);
+                                    dieselAttendant.addQueue(dieselQueue3);
+
                                     switch (attendantMenu()) {
-                                        case 1: // dispense fuel
-                                            break;
-                                        case 2: //quit
-                                            System.exit(0);
-                                            break;
+                                        case 1 -> { // dispense fuel
+                                            Thread thread1 = new Thread(petrolAttendant);
+                                            Thread thread2 = new Thread(dieselAttendant);
+                                            thread1.start();
+                                            thread2.start();
+
+
+                                        }
+                                        case 2 -> //quit
+                                                System.exit(0);
                                     }
                                 }
                                 case 2 -> { // accountant
