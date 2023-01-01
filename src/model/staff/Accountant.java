@@ -1,7 +1,5 @@
 package model.staff;
 
-import model.customer.Customer;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -17,15 +15,15 @@ public class Accountant extends Staff{
 
         // SQL statement for creating a new table
         String createTable = "CREATE TABLE IF NOT EXISTS "+nameOfTheAccountTable+ " (\n"
-                + "	Account_ID integer NOT NULL,\n"
-                + "	Accountant_Name varchar NOT NULL,\n"
-                + "	Customer VARCHAR NOT NULL \n"
-                + "	Paid_Amount double NOT NULL \n"
-                + "	Fuel_Dispensed double NOT NULL \n"
-                + "	Pumped_Date date NOT NULL \n"
-                + "	Vehicle_Category_Type varchar NOT NULL \n"
-                + "	Fuel_Type varchar NOT NULL \n"
-                + "	Dispenser_ID int NOT NULL \n"
+                + "	Account_ID int(10) NOT NULL,\n"
+                + "	Accountant_Name varchar(40) NOT NULL,\n"
+                + "	Customer VARCHAR(40) NOT NULL, \n"
+                + "	Paid_Amount double NOT NULL, \n"
+                + "	Fuel_Dispensed double NOT NULL, \n"
+                + "	Pumped_Date date NOT NULL, \n"
+                + "	Vehicle_Category_Type varchar(40) NOT NULL, \n"
+                + "	Fuel_Type varchar(40) NOT NULL, \n"
+                + "	Dispenser_ID int(10) NOT NULL \n"
                 + ");";
 
         try {
@@ -33,7 +31,7 @@ public class Accountant extends Staff{
             Statement statement = connection.createStatement();
 
             //Creating a new table
-            statement.executeQuery(createTable);
+            statement.execute(createTable);
             return true;
         }catch (Exception e){
             System.out.println(e);
@@ -50,11 +48,11 @@ public class Accountant extends Staff{
 
         try {
             Connection connection = DriverManager.getConnection(url,"root","");
-            PreparedStatement preparedStmt = connection.prepareStatement(dropTable);
-            preparedStmt.setString(1,nameOfTheAccountTable);
+            Statement stmt = connection.createStatement();
+
 
             //Removing the table
-            preparedStmt.execute();
+            stmt.execute(dropTable);
             return true;
         }catch (Exception e){
             System.out.println(e);
@@ -75,7 +73,7 @@ public class Accountant extends Staff{
 //        }
 //    }
 
-//    public boolean addAccount(Account account){
+    //    public boolean addAccount(Account account){
 //        int indexOfTheAccount = listOfAccounts.indexOf(account);
 //        if (indexOfTheAccount == -1){
 //            //If the object does not exist in the list

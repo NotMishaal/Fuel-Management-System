@@ -30,8 +30,6 @@ public class Account {
 
             Connection connection = DriverManager.getConnection(url,userName,password);
 
-            Statement statement = connection.createStatement();
-
             //Date format when adding the date parameter: "yyyy-MM-dd"
             addDataToTheAccountTable("account",12,"Yujith", "Inuka", 5000, 20, "2020-11-19","Jeep","Petrol",1);
             addDataToTheAccountTable("account",12,"Yujith","Nepuna",7500,35,"2022-12-29","Car","Petrol",1);
