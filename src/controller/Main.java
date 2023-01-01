@@ -38,6 +38,9 @@ public class Main {
 
         octaneRepository.setAvailableFuel(100000);
         dieselRepository.setAvailableFuel(100000);
+
+        octaneRepository.setCapacity(100000);
+        dieselRepository.setCapacity(100000);
         // Initialize staff members
 
         Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
@@ -162,7 +165,8 @@ public class Main {
                                             System.out.println("Octane level above 500L: " + manager.verifyFuelCapacity(octaneRepository));
                                         case 2: // refill repo
                                             System.out.println("Please enter fuel type: "); // get fuel type
-                                            if (scanner.nextLine().equalsIgnoreCase("diesel")){ // fuel type is diesel
+                                            String fuelType = scanner.nextLine();
+                                            if (fuelType.equalsIgnoreCase("diesel")){ // fuel type is diesel
                                                 System.out.println("Please enter amount in liters: "); // get qnt
                                                 String amount = scanner.nextLine();
                                                 try { // Verify input is a number
@@ -170,7 +174,7 @@ public class Main {
                                                 } catch (Exception e){
                                                     System.out.println("Invalid quantity, refill failed.");
                                                 }
-                                            } else if (scanner.nextLine().equalsIgnoreCase("octane")) { // fuel type is octane
+                                            } else if (fuelType.equalsIgnoreCase("octane")) { // fuel type is octane
                                                 System.out.println("Please enter amount in liters: "); // get qnt
                                                 String amount = scanner.nextLine();
                                                 try { // Verify input is a number

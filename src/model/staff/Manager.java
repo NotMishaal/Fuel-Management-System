@@ -56,13 +56,17 @@ public class Manager extends Staff{
         return r.getAvailableFuel() > 500;
     }
 
-    public boolean refillRepository(Repository r, double quantity){
+    public void refillRepository(Repository r, double quantity){
         //This function will refill the fuel amount if the fuel capacity is less than 500L
         if (!verifyFuelCapacity(r)){
-            r.setAvailableFuel(r.getAvailableFuel()+quantity);
-            return true;
+            if (r.getAvailableFuel()+quantity < r.getCapacity()){
+                r.setAvailableFuel(r.getAvailableFuel()+quantity);
+                System.out.println("Repository refilled. Available octane: " + r.getAvailableFuel());
+            } else {
+                System.out.println("Volume entered exceeds repository capacity!");
+            }
         } else {
-            return false;
+            System.out.println("Fuel capacity is above 500L");
         }
     }
 }
