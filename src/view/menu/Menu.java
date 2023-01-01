@@ -53,10 +53,11 @@ public class Menu {
     public static int accountantMenu(){
         System.out.println("====Select an Option====");
         System.out.println("1. View Accounts");
-        System.out.println("2. Modify Accounts");
-        System.out.println("3. Quit");
+        System.out.println("2. Add Accounts");
+        System.out.println("3. Delete Accounts");
+        System.out.println("4. Quit");
 
-        return userInput(1,3);
+        return userInput(1,4);
     }
 
     public static int managerMenu(){

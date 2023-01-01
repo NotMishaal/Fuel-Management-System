@@ -152,9 +152,37 @@ public class Main {
                                     switch (accountantMenu()) {
                                         case 1: // view accounts
                                             Account.readDataFromTheAccountTable("account");
-                                        case 2: // delete accounts
+                                        case 2: // Add accounts
+                                            System.out.println("Enter the account ID: ");
+                                            int accountID = Integer.parseInt(scanner.nextLine());
+
+                                            System.out.println("Enter the customer name: ");
+                                            String cusName = scanner.nextLine();
+
+                                            System.out.println("Enter the paid amount: ");
+                                            double payment = Double.parseDouble(scanner.nextLine());
+
+                                            System.out.println("Enter the fuel dispensed: ");
+                                            double fuelDispensed = Double.parseDouble(scanner.nextLine());
+
+                                            System.out.println("Enter the date(yyyy-mm-dd): ");
+                                            String date = scanner.nextLine();
+
+                                            System.out.println("Enter the vehicle category type: ");
+                                            String category = scanner.nextLine();
+
+                                            System.out.println("Enter the fuel type: ");
+                                            String fuelType = scanner.nextLine();
+
+                                            System.out.println("Enter the dispenser ID: ");
+                                            int dispenserID = Integer.parseInt(scanner.nextLine());
+
+                                            Account.addDataToTheAccountTable(
+                                                    "account", accountID, accountant.getName(), cusName, payment, fuelDispensed, date, category, fuelType, dispenserID
+                                            );
+                                        case 3: // Delete accounts
                                             //accountant.deleteDataFromAccount("account", customer.getLicensePlate());
-                                        case 3: // quit
+                                        case 4: // quit
                                             System.exit(0);
                                             break;
                                     }
