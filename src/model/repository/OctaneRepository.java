@@ -69,7 +69,7 @@ public class OctaneRepository extends Repository{
     }
 
     // Composition with the octane dispense manager
-    public OctaneRepository(ArrayList<OctaneDispenser> listOfOctaneDispenser, double price, int ID) {
+    public OctaneRepository(double price, int ID) {
         listOfOctaneDispenser.add(new OctaneDispenser(ID));
         this.price=price;
     }

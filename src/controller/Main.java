@@ -1,8 +1,6 @@
 package controller;
 
 import model.customer.Customer;
-import model.dispenser.DieselDispenser;
-import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
 import model.repository.OctaneRepository;
@@ -26,33 +24,18 @@ public class Main {
         Queue dieselQueue3 = new Queue("Diesel", 7);
         ArrayList<Customer> commonQueue = new ArrayList<>();
 
-        // Initialize dispensers
-        DieselDispenser dieselDispenser1 = new DieselDispenser(1);
-        DieselDispenser dieselDispenser2 = new DieselDispenser(2);
-        DieselDispenser dieselDispenser3 = new DieselDispenser(3);
-        OctaneDispenser octaneDispenser1 = new OctaneDispenser(1);
-        OctaneDispenser octaneDispenser2 = new OctaneDispenser(2);
-        OctaneDispenser octaneDispenser3 = new OctaneDispenser(3);
-        OctaneDispenser octaneDispenser4 = new OctaneDispenser(4);
-
-        // Create a list of dispensers to add to the repository
-        ArrayList<DieselDispenser> dieselDispensers = new ArrayList<>();
-        ArrayList<OctaneDispenser> octaneDispensers = new ArrayList<>();
-
-        // Add objects to the dispensers list
-        dieselDispensers.add(dieselDispenser1);
-        dieselDispensers.add(dieselDispenser2);
-        dieselDispensers.add(dieselDispenser3);
-        octaneDispensers.add(octaneDispenser1);
-        octaneDispensers.add(octaneDispenser2);
-        octaneDispensers.add(octaneDispenser3);
-        octaneDispensers.add(octaneDispenser4);
-
-        // TODO init properly according to the composition methods
         // Initialize repositories
-//        DieselRepository dieselRepository = new DieselRepository(dieselDispensers, 430);
-//        OctaneRepository octaneRepository = new OctaneRepository(octaneDispensers, 450);
+        DieselRepository dieselRepository = new DieselRepository(430, 1);
+        OctaneRepository octaneRepository = new OctaneRepository(450, 2);
 
+        // Add the *compositions* of dispensers to the repositories
+        dieselRepository.createDispenser(1);
+        dieselRepository.createDispenser(2);
+        dieselRepository.createDispenser(3);
+        octaneRepository.createDispenser(4);
+        octaneRepository.createDispenser(5);
+        octaneRepository.createDispenser(6);
+        octaneRepository.createDispenser(7);
 
         // user input
         while (true) {
