@@ -17,15 +17,16 @@ public class Main {
     // initialize variables
 
     // global repositories
-    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why static?
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why public?
     public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
 
     // customers
-    private Customer customer1;
-    private Customer customer2;
-    private Customer customer3;
-    private Customer customer4;
-    private Customer customer5;
+    private static Customer customer1;
+    private static Customer customer2;
+    private static Customer customer3;
+    private static Customer customer4;
+    private static Customer customer5;
+    private static Customer customer;
 
     // queues
     private static Queue petrolQueue1;
@@ -38,10 +39,10 @@ public class Main {
     private static ArrayList<Customer> commonQueue = new ArrayList<>();
 
     // staff
-    private Attendant petrolAttendant;
-    private Attendant dieselAttendant;
-    private Accountant accountant;
-    private Manager manager;
+    private static Attendant petrolAttendant;
+    private static Attendant dieselAttendant;
+    private static Accountant accountant;
+    private static Manager manager;
 
     //
 
@@ -58,37 +59,37 @@ public class Main {
 
 
         // Add the *compositions* of dispensers to the repositories
-        dieselRepository.createDispenser(1);
-        dieselRepository.createDispenser(2);
-        dieselRepository.createDispenser(3);
-        octaneRepository.createDispenser(4);
-        octaneRepository.createDispenser(5);
-        octaneRepository.createDispenser(6);
-        octaneRepository.createDispenser(7);
-
-        octaneRepository.setAvailableFuel(100000);
-        dieselRepository.setAvailableFuel(100000);
-
-        octaneRepository.setCapacity(100000);
-        dieselRepository.setCapacity(100000);
+//        dieselRepository.createDispenser(1);
+//        dieselRepository.createDispenser(2);
+//        dieselRepository.createDispenser(3);
+//        octaneRepository.createDispenser(4);
+//        octaneRepository.createDispenser(5);
+//        octaneRepository.createDispenser(6);
+//        octaneRepository.createDispenser(7);
+//
+//        octaneRepository.setAvailableFuel(100000);
+//        dieselRepository.setAvailableFuel(100000);
+//
+//        octaneRepository.setCapacity(100000);
+//        dieselRepository.setCapacity(100000);
         // Initialize staff members
 
-        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
-        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
+//        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
+//        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
+//
+//        petrolAttendant.addQueue(petrolQueue1);
+//        petrolAttendant.addQueue(petrolQueue2);
+//        petrolAttendant.addQueue(petrolQueue3);
+//        petrolAttendant.addQueue(petrolQueue4);
+//
+//        dieselAttendant.addQueue(dieselQueue1);
+//        dieselAttendant.addQueue(dieselQueue2);
+//        dieselAttendant.addQueue(dieselQueue3);
 
-        petrolAttendant.addQueue(petrolQueue1);
-        petrolAttendant.addQueue(petrolQueue2);
-        petrolAttendant.addQueue(petrolQueue3);
-        petrolAttendant.addQueue(petrolQueue4);
-
-        dieselAttendant.addQueue(dieselQueue1);
-        dieselAttendant.addQueue(dieselQueue2);
-        dieselAttendant.addQueue(dieselQueue3);
-
-        Customer customer = new Customer(1, 0, "CUS0005");
-
-        Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
-        Manager manager = new Manager("MGR0001", "Mike Hawk");
+//        Customer customer = new Customer(1, 0, "CUS0005");
+//
+//        Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
+//        Manager manager = new Manager("MGR0001", "Mike Hawk");
 
         // Create a scanner object
         Scanner scanner = new Scanner(System.in);
@@ -161,9 +162,8 @@ public class Main {
                                 case 3 -> { // go back
                                     break mainSelection;
                                 }
-                                case 4 -> { // quit
+                                case 4 -> // quit
                                     System.exit(0);
-                                }
                             }
                         }
                     case 2: // user is a staff member
@@ -178,11 +178,9 @@ public class Main {
                                             thread2.start();
                                         }
                                         case 2 -> { // go back
-                                            break;
                                         }
-                                        case 3 -> { //
+                                        case 3 -> //
                                             System.exit(0);
-                                        }
                                     }
                                 }
                                 case 2 -> { // accountant
@@ -293,9 +291,8 @@ public class Main {
                                 case 4 -> { // go back
                                     break mainSelection;
                                 }
-                                case 5 -> { // quit
+                                case 5 -> // quit
                                     System.exit(0);
-                                }
                             }
                         }
                     case 3: //quit
@@ -310,6 +307,7 @@ public class Main {
 
     // sets up all the variables to be used
     public static void initialize(){
+        // queues
         petrolQueue1 = new Queue("Petrol", 1);
         petrolQueue2 = new Queue("Petrol", 2);
         petrolQueue3 = new Queue("Petrol", 3);
@@ -317,6 +315,41 @@ public class Main {
         dieselQueue1 = new Queue("Diesel", 5);
         dieselQueue2 = new Queue("Diesel", 6);
         dieselQueue3 = new Queue("Diesel", 7);
+
+        // repos & dispensers
+        dieselRepository.createDispenser(1);
+        dieselRepository.createDispenser(2);
+        dieselRepository.createDispenser(3);
+        octaneRepository.createDispenser(4);
+        octaneRepository.createDispenser(5);
+        octaneRepository.createDispenser(6);
+        octaneRepository.createDispenser(7);
+
+        octaneRepository.setAvailableFuel(100000);
+        dieselRepository.setAvailableFuel(100000);
+
+        octaneRepository.setCapacity(100000);
+        dieselRepository.setCapacity(100000);
+
+        // attendants and their queues
+        petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
+        dieselAttendant = new Attendant("ATT0002", "John Doe");
+
+        petrolAttendant.addQueue(petrolQueue1);
+        petrolAttendant.addQueue(petrolQueue2);
+        petrolAttendant.addQueue(petrolQueue3);
+        petrolAttendant.addQueue(petrolQueue4);
+
+        dieselAttendant.addQueue(dieselQueue1);
+        dieselAttendant.addQueue(dieselQueue2);
+        dieselAttendant.addQueue(dieselQueue3);
+
+        // staff
+        accountant = new Accountant("ACC0001", "Aaron Cho");
+        manager = new Manager("MGR0001", "Mike Hawk");
+
+        // customers
+        customer = new Customer(1, 0, "CUS0005");
     }
 
 }
