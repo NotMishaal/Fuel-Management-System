@@ -40,9 +40,7 @@ public class OctaneDispenser implements FuelDispenseManager{
 
     @Override
     public void dispenseFuel(double quantity) {
-        // TODO replace the availableOctane with the getter from yujith's class
         // Method to dispense octane to customer
-        // Method to dispense diesel to customer
 
         if (Main.octaneRepository.getAvailableFuel() > 500){
             if((Main.octaneRepository.getAvailableFuel()-500) > quantity){

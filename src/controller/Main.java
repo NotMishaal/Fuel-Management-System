@@ -17,7 +17,6 @@ public class Main {
     public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
     public static void main(String[] args) {
         // Initialize queues
-        //TODO: init all relevant objects
         Queue petrolQueue1 = new Queue("Petrol", 1);
         Queue petrolQueue2 = new Queue("Petrol", 2);
         Queue petrolQueue3 = new Queue("Petrol", 3);
@@ -36,11 +35,25 @@ public class Main {
         octaneRepository.createDispenser(6);
         octaneRepository.createDispenser(7);
 
+        // Initialize staff attendants
+
+        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
+        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
+
+        petrolAttendant.addQueue(petrolQueue1);
+        petrolAttendant.addQueue(petrolQueue2);
+        petrolAttendant.addQueue(petrolQueue3);
+        petrolAttendant.addQueue(petrolQueue4);
+
+        dieselAttendant.addQueue(dieselQueue1);
+        dieselAttendant.addQueue(dieselQueue2);
+        dieselAttendant.addQueue(dieselQueue3);
+
         // user input
         while (true) {
             try {
                 switch (userSelection()){
-                    case 1: //user is a customer
+                    case 1: // user is a customer
                         Customer customer = new Customer(1, 0, "CUS0005");
                         while (true) {
                             switch (customerMenu()) {
@@ -106,30 +119,16 @@ public class Main {
                                         System.exit(0);
                             }
                         }
-                    case 2: //user is a staff member
+                    case 2: // user is a staff member
                         while (true) {
                             switch (staffMenu()) {
                                 case 1 -> { // attendant
-                                    Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
-                                    Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
-
-                                    petrolAttendant.addQueue(petrolQueue1);
-                                    petrolAttendant.addQueue(petrolQueue2);
-                                    petrolAttendant.addQueue(petrolQueue3);
-                                    petrolAttendant.addQueue(petrolQueue4);
-
-                                    dieselAttendant.addQueue(dieselQueue1);
-                                    dieselAttendant.addQueue(dieselQueue2);
-                                    dieselAttendant.addQueue(dieselQueue3);
-
                                     switch (attendantMenu()) {
                                         case 1 -> { // dispense fuel
                                             Thread thread1 = new Thread(petrolAttendant);
                                             Thread thread2 = new Thread(dieselAttendant);
                                             thread1.start();
                                             thread2.start();
-
-
                                         }
                                         case 2 -> //quit
                                                 System.exit(0);
