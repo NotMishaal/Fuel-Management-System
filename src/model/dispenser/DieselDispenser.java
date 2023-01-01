@@ -50,7 +50,7 @@ public class DieselDispenser implements FuelDispenseManager{
             if((Main.dieselRepository.getAvailableFuel()-500) > quantity){
                 if (!this.isSuspended){
                     Main.dieselRepository.setAvailableFuel(Main.dieselRepository.getAvailableFuel()-quantity);
-                    System.out.println("Fuel dispensed");
+                    System.out.println("Diesel dispensed");
                 }
                 else{
                     System.out.println("Dispenser is suspended. Cannot dispense diesel.");
