@@ -1,8 +1,6 @@
 package controller;
 
 import model.customer.Customer;
-import model.dispenser.DieselDispenser;
-import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
 import model.repository.OctaneRepository;
@@ -14,9 +12,11 @@ import java.util.InputMismatchException;
 import static view.menu.Menu.*;
 
 public class Main {
+    // Initialize repositories
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1);
+    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
     public static void main(String[] args) {
         // Initialize queues
-        //TODO: init all relevant objects
         Queue petrolQueue1 = new Queue("Petrol", 1);
         Queue petrolQueue2 = new Queue("Petrol", 2);
         Queue petrolQueue3 = new Queue("Petrol", 3);
@@ -26,39 +26,34 @@ public class Main {
         Queue dieselQueue3 = new Queue("Diesel", 7);
         ArrayList<Customer> commonQueue = new ArrayList<>();
 
-        // Initialize dispensers
-        DieselDispenser dieselDispenser1 = new DieselDispenser(1);
-        DieselDispenser dieselDispenser2 = new DieselDispenser(2);
-        DieselDispenser dieselDispenser3 = new DieselDispenser(3);
-        OctaneDispenser octaneDispenser1 = new OctaneDispenser(1);
-        OctaneDispenser octaneDispenser2 = new OctaneDispenser(2);
-        OctaneDispenser octaneDispenser3 = new OctaneDispenser(3);
-        OctaneDispenser octaneDispenser4 = new OctaneDispenser(4);
+        // Add the *compositions* of dispensers to the repositories
+        dieselRepository.createDispenser(1);
+        dieselRepository.createDispenser(2);
+        dieselRepository.createDispenser(3);
+        octaneRepository.createDispenser(4);
+        octaneRepository.createDispenser(5);
+        octaneRepository.createDispenser(6);
+        octaneRepository.createDispenser(7);
 
-        // Create a list of dispensers to add to the repository
-        ArrayList<DieselDispenser> dieselDispensers = new ArrayList<>();
-        ArrayList<OctaneDispenser> octaneDispensers = new ArrayList<>();
+        // Initialize staff attendants
 
-        // Add objects to the dispensers list
-        dieselDispensers.add(dieselDispenser1);
-        dieselDispensers.add(dieselDispenser2);
-        dieselDispensers.add(dieselDispenser3);
-        octaneDispensers.add(octaneDispenser1);
-        octaneDispensers.add(octaneDispenser2);
-        octaneDispensers.add(octaneDispenser3);
-        octaneDispensers.add(octaneDispenser4);
+        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
+        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
 
-        // TODO init properly according to the composition methods
-        // Initialize repositories
-//        DieselRepository dieselRepository = new DieselRepository(dieselDispensers, 430);
-//        OctaneRepository octaneRepository = new OctaneRepository(octaneDispensers, 450);
+        petrolAttendant.addQueue(petrolQueue1);
+        petrolAttendant.addQueue(petrolQueue2);
+        petrolAttendant.addQueue(petrolQueue3);
+        petrolAttendant.addQueue(petrolQueue4);
 
+        dieselAttendant.addQueue(dieselQueue1);
+        dieselAttendant.addQueue(dieselQueue2);
+        dieselAttendant.addQueue(dieselQueue3);
 
         // user input
         while (true) {
             try {
                 switch (userSelection()){
-                    case 1: //user is a customer
+                    case 1: // user is a customer
                         Customer customer = new Customer(1, 0, "CUS0005");
                         while (true) {
                             switch (customerMenu()) {
@@ -124,30 +119,16 @@ public class Main {
                                         System.exit(0);
                             }
                         }
-                    case 2: //user is a staff member
+                    case 2: // user is a staff member
                         while (true) {
                             switch (staffMenu()) {
                                 case 1 -> { // attendant
-                                    Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
-                                    Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
-
-                                    petrolAttendant.addQueue(petrolQueue1);
-                                    petrolAttendant.addQueue(petrolQueue2);
-                                    petrolAttendant.addQueue(petrolQueue3);
-                                    petrolAttendant.addQueue(petrolQueue4);
-
-                                    dieselAttendant.addQueue(dieselQueue1);
-                                    dieselAttendant.addQueue(dieselQueue2);
-                                    dieselAttendant.addQueue(dieselQueue3);
-
                                     switch (attendantMenu()) {
                                         case 1 -> { // dispense fuel
                                             Thread thread1 = new Thread(petrolAttendant);
                                             Thread thread2 = new Thread(dieselAttendant);
                                             thread1.start();
                                             thread2.start();
-
-
                                         }
                                         case 2 -> //quit
                                                 System.exit(0);

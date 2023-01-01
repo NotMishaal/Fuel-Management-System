@@ -1,7 +1,9 @@
 package model.dispenser;
 
+import java.sql.*;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DateTime {
     private String fuelType;
@@ -13,6 +15,7 @@ public class DateTime {
     }
 
     // Getters and setters
+
     public String getFuelType() {
         return fuelType;
     }
@@ -29,9 +32,32 @@ public class DateTime {
         this.fuelQuantityDispensed = fuelQuantityDispensed;
     }
 
-    public double calculateFuelDispensed(Date date){
+    public double calculateFuelDispensed(String date){
         // This method calculates the total fuel dispensed on a given date
-        // TODO get data from database
+        try {
+            Statement stat = makeConnection().createStatement();
+            ResultSet rs = stat.executeQuery("select * from account");
+            double totalFuelDispensed = 0;
+            while (rs.next())
+                if (Objects.equals(rs.getString(6), "2020-11-19")){
+                    totalFuelDispensed += rs.getDouble(5);
+                }
+            System.out.println("Total fuel dispensed on "+ date + " is " + totalFuelDispensed);
+            makeConnection().close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return 0;
     }
+
+    public Connection makeConnection() throws ClassNotFoundException, SQLException {
+        // Make connection
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/account?autoReconnect=true&useSSL=false", "root", ""
+        );
+        return con;
+    }
+
+    public DateTime(){}
 }

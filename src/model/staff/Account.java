@@ -1,6 +1,7 @@
 package model.staff;
 
 import model.customer.Customer;
+import model.dispenser.DateTime;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -25,12 +26,14 @@ public class Account {
         String url = "jdbc:mysql://localhost:3306/account";
         String userName = "root";
         String password = "";
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection connection = DriverManager.getConnection(url,userName,password);
 
             //Date format when adding the date parameter: "yyyy-MM-dd"
+
             addDataToTheAccountTable("account",12,"Yujith", "Inuka", 5000, 20, "2020-11-19","Jeep","Petrol",1);
             addDataToTheAccountTable("account",12,"Yujith","Nepuna",7500,35,"2022-12-29","Car","Petrol",1);
             addDataToTheAccountTable("account",12,"Yujith","Surath",8900,40,"2022-12-29","Car","Petrol",1);
@@ -44,6 +47,7 @@ public class Account {
             System.out.println(e);
         }
     }
+
     public static void addDataToTheAccountTable(String tableName,int accountID,String accountantName,String customerName,double paidAmount,double fuelDispensed,String pumpedDate,String vehicleCategoryType,String fuelType, int dispenserID){
         //This is to add new data to the account table
         String url = "jdbc:mysql://localhost:3306/account";
@@ -165,7 +169,7 @@ public class Account {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                System.out.println("Vahicle category type: "+rs.getString("Vehicle_Category_Type") + ", total fuel dispensed: " + rs.getString(2));
+                System.out.println("Vehicle category type: "+rs.getString("Vehicle_Category_Type") + ", total fuel dispensed: " + rs.getString(2));
             }
         }catch (Exception e){
             System.out.println(e);

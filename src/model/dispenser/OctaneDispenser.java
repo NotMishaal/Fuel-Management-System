@@ -1,11 +1,10 @@
 package model.dispenser;
+import controller.Main;
 import model.repository.OctaneRepository;
 
 public class OctaneDispenser implements FuelDispenseManager{
     private int dispenserID;
-    private double fuelDispensed;
     private OctaneRepository octaneRepository;
-    private double availableOctane;
     private boolean isSuspended;
 
 
@@ -15,13 +14,6 @@ public class OctaneDispenser implements FuelDispenseManager{
     }
 
     // Getters and setters
-    public double getAvailableOctane() {
-        return availableOctane;
-    }
-
-    public void setAvailableOctane(double availableOctane) {
-        this.availableOctane = availableOctane;
-    }
     public boolean isSuspended() {
         return isSuspended;
     }
@@ -38,14 +30,6 @@ public class OctaneDispenser implements FuelDispenseManager{
         this.dispenserID = dispenserID;
     }
 
-    public double getFuelDispensed() {
-        return fuelDispensed;
-    }
-
-    public void setFuelDispensed(double fuelDispensed) {
-        this.fuelDispensed = fuelDispensed;
-    }
-
     public OctaneRepository getOctaneRepository() {
         return octaneRepository;
     }
@@ -56,19 +40,19 @@ public class OctaneDispenser implements FuelDispenseManager{
 
     @Override
     public void dispenseFuel(double quantity) {
-        // TODO replace the availableOctane with the getter from yujith's class
         // Method to dispense octane to customer
-        if (this.availableOctane > 500){
-            if((this.availableOctane-500) > quantity){
+
+        if (Main.octaneRepository.getAvailableFuel() > 500){
+            if((Main.octaneRepository.getAvailableFuel()-500) > quantity){
                 if (!this.isSuspended){
-                    this.availableOctane-=quantity;
+                    Main.octaneRepository.setAvailableFuel(Main.octaneRepository.getAvailableFuel()-quantity);
                     System.out.println("Octane dispensed");
                 }
                 else{
                     System.out.println("Dispenser is suspended. Cannot dispense octane.");
                 }
             } else {
-                System.out.println("Fuel capacity insufficient. Available octane: "+this.availableOctane+ " requested fuel: "+ quantity);
+                System.out.println("Fuel capacity insufficient. Available octane: "+Main.octaneRepository.getAvailableFuel()+ " requested fuel: "+ quantity);
             }
         } else {
             System.out.println("Fuel capacity reached minimum. The repository is now closed.");
@@ -76,9 +60,6 @@ public class OctaneDispenser implements FuelDispenseManager{
         }
     }
 
-    public double getAvailableOctane(DieselDispenser dieselDispenser){
-        return dieselDispenser.getAvailableDiesel();
-    }
     @Override
     public void suspendDispenser() {
         // Method to suspend dispenser if remaining octane in repository is < 500L

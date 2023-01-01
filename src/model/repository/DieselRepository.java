@@ -68,8 +68,7 @@ public class DieselRepository extends Repository{
     }
 
     // Composition with the Diesel dispense manager
-    public DieselRepository(ArrayList<DieselDispenser> listOfDieselDispenser,double price, int ID) {
-//        this.listOfDieselDispenser = listOfDieselDispenser;
+    public DieselRepository(double price, int ID) {
         listOfDieselDispenser.add(new DieselDispenser(ID));
         this.price = price;
     }
