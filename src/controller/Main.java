@@ -35,7 +35,7 @@ public class Main {
         octaneRepository.createDispenser(6);
         octaneRepository.createDispenser(7);
 
-        // Initialize staff attendants
+        // Initialize staff members
 
         Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
         Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
@@ -49,12 +49,16 @@ public class Main {
         dieselAttendant.addQueue(dieselQueue2);
         dieselAttendant.addQueue(dieselQueue3);
 
+        Customer customer = new Customer(1, 0, "CUS0005");
+
+        Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
+        Manager manager = new Manager("MGR0001", "Mike Hawk");
+
         // user input
         while (true) {
             try {
                 switch (userSelection()){
                     case 1: // user is a customer
-                        Customer customer = new Customer(1, 0, "CUS0005");
                         while (true) {
                             switch (customerMenu()) {
                                 case 1 -> { // view queues
@@ -135,25 +139,26 @@ public class Main {
                                     }
                                 }
                                 case 2 -> { // accountant
-                                    Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
                                     switch (accountantMenu()) {
                                         case 1: // view accounts
-                                            break;
-                                        case 2: // modify accounts
-                                            break;
+                                            Account.readDataFromTheAccountTable("account");
+                                        case 2: // delete accounts
+                                            // TODO Account.deleteData(customer.getLicensePlate());
                                         case 3: // quit
                                             System.exit(0);
                                             break;
                                     }
                                 }
                                 case 3 -> { // manager
-                                    Manager manager = new Manager("MGR0001", "Mike Hawk");
                                     switch (managerMenu()) {
                                         case 1: // verify repo capacity
+                                            System.out.println("Available diesel: " + dieselRepository.getAvailableFuel());
+                                            System.out.println("Available octane: " + octaneRepository.getAvailableFuel());
+                                        case 2: // refill repo
                                             break;
-                                        case 2: // install new dispenser
+                                        case 3: // install new dispenser
                                             break;
-                                        case 3: //quit
+                                        case 4: //quit
                                             System.exit(0);
                                             break;
                                     }
@@ -169,4 +174,5 @@ public class Main {
             }
         }
     }
+
 }
