@@ -47,49 +47,8 @@ public class Main {
     //
 
     public static void main(String[] args) {
-        // Initialize queues
-//        Queue petrolQueue1 = new Queue("Petrol", 1);
-//        Queue petrolQueue2 = new Queue("Petrol", 2);
-//        Queue petrolQueue3 = new Queue("Petrol", 3);
-//        Queue petrolQueue4 = new Queue("Petrol", 4);
-//        Queue dieselQueue1 = new Queue("Diesel", 5);
-//        Queue dieselQueue2 = new Queue("Diesel", 6);
-//        Queue dieselQueue3 = new Queue("Diesel", 7);
+        // initialize all variables
         initialize();
-
-
-        // Add the *compositions* of dispensers to the repositories
-//        dieselRepository.createDispenser(1);
-//        dieselRepository.createDispenser(2);
-//        dieselRepository.createDispenser(3);
-//        octaneRepository.createDispenser(4);
-//        octaneRepository.createDispenser(5);
-//        octaneRepository.createDispenser(6);
-//        octaneRepository.createDispenser(7);
-//
-//        octaneRepository.setAvailableFuel(100000);
-//        dieselRepository.setAvailableFuel(100000);
-//
-//        octaneRepository.setCapacity(100000);
-//        dieselRepository.setCapacity(100000);
-        // Initialize staff members
-
-//        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
-//        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
-//
-//        petrolAttendant.addQueue(petrolQueue1);
-//        petrolAttendant.addQueue(petrolQueue2);
-//        petrolAttendant.addQueue(petrolQueue3);
-//        petrolAttendant.addQueue(petrolQueue4);
-//
-//        dieselAttendant.addQueue(dieselQueue1);
-//        dieselAttendant.addQueue(dieselQueue2);
-//        dieselAttendant.addQueue(dieselQueue3);
-
-//        Customer customer = new Customer(1, 0, "CUS0005");
-//
-//        Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
-//        Manager manager = new Manager("MGR0001", "Mike Hawk");
 
         // Create a scanner object
         Scanner scanner = new Scanner(System.in);
@@ -316,7 +275,7 @@ public class Main {
         dieselQueue2 = new Queue("Diesel", 6);
         dieselQueue3 = new Queue("Diesel", 7);
 
-        // repos & dispensers
+        // Add the *compositions* of dispensers to the repositories
         dieselRepository.createDispenser(1);
         dieselRepository.createDispenser(2);
         dieselRepository.createDispenser(3);
