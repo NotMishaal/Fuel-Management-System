@@ -15,31 +15,6 @@ import java.util.Scanner;
 import static view.menu.Menu.*;
 
 public class Main {
-    // declare variables
-
-    // global repositories
-    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why public?
-    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
-
-    private static Customer customer;
-
-    // queues
-    private static Queue petrolQueue1;
-    private static Queue petrolQueue2;
-    private static Queue petrolQueue3;
-    private static Queue petrolQueue4;
-    private static Queue dieselQueue1;
-    private static Queue dieselQueue2;
-    private static Queue dieselQueue3;
-    private static ArrayList<Customer> commonQueue = new ArrayList<>();
-
-    // staff
-    private static Attendant petrolAttendant;
-    private static Attendant dieselAttendant;
-    private static Accountant accountant;
-    private static Manager manager;
-
-    //
 
     public static void main(String[] args) {
         // initialize all variables
@@ -263,6 +238,30 @@ public class Main {
             }
         }
     }
+
+    // declare variables
+
+    // global repositories
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why public?
+    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
+
+    private static Customer customer;
+
+    // queues
+    private static Queue petrolQueue1;
+    private static Queue petrolQueue2;
+    private static Queue petrolQueue3;
+    private static Queue petrolQueue4;
+    private static Queue dieselQueue1;
+    private static Queue dieselQueue2;
+    private static Queue dieselQueue3;
+    private static ArrayList<Customer> commonQueue = new ArrayList<>();
+
+    // staff
+    private static Attendant petrolAttendant;
+    private static Attendant dieselAttendant;
+    private static Accountant accountant;
+    private static Manager manager;
 
     // sets up all the variables to be used
     public static void initialize(){
