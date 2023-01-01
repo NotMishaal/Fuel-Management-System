@@ -69,6 +69,7 @@ public class Account {
             preparedStmt.setString(8,fuelType);
             preparedStmt.setInt(9,dispenserID);
             preparedStmt.execute();
+            System.out.println("Record added Successfully!");
         }catch (Exception e){
             System.out.println(e);
         }
