@@ -1,6 +1,7 @@
 package controller;
 
 import model.customer.Customer;
+import model.customer.Ticket;
 import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
@@ -14,52 +15,10 @@ import java.util.Scanner;
 import static view.menu.Menu.*;
 
 public class Main {
-    // Initialize repositories
-    public static DieselRepository dieselRepository = new DieselRepository(430, 1);
-    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
+
     public static void main(String[] args) {
-        // Initialize queues
-        Queue petrolQueue1 = new Queue("Petrol", 1);
-        Queue petrolQueue2 = new Queue("Petrol", 2);
-        Queue petrolQueue3 = new Queue("Petrol", 3);
-        Queue petrolQueue4 = new Queue("Petrol", 4);
-        Queue dieselQueue1 = new Queue("Diesel", 5);
-        Queue dieselQueue2 = new Queue("Diesel", 6);
-        Queue dieselQueue3 = new Queue("Diesel", 7);
-        ArrayList<Customer> commonQueue = new ArrayList<>();
-
-        // Add the *compositions* of dispensers to the repositories
-        dieselRepository.createDispenser(1);
-        dieselRepository.createDispenser(2);
-        dieselRepository.createDispenser(3);
-        octaneRepository.createDispenser(4);
-        octaneRepository.createDispenser(5);
-        octaneRepository.createDispenser(6);
-        octaneRepository.createDispenser(7);
-
-        octaneRepository.setAvailableFuel(100000);
-        dieselRepository.setAvailableFuel(100000);
-
-        octaneRepository.setCapacity(100000);
-        dieselRepository.setCapacity(100000);
-        // Initialize staff members
-
-        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
-        Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
-
-        petrolAttendant.addQueue(petrolQueue1);
-        petrolAttendant.addQueue(petrolQueue2);
-        petrolAttendant.addQueue(petrolQueue3);
-        petrolAttendant.addQueue(petrolQueue4);
-
-        dieselAttendant.addQueue(dieselQueue1);
-        dieselAttendant.addQueue(dieselQueue2);
-        dieselAttendant.addQueue(dieselQueue3);
-
-        Customer customer = new Customer(1, 0, "CUS0005");
-
-        Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
-        Manager manager = new Manager("MGR0001", "Mike Hawk");
+        // initialize all variables
+        initialize();
 
         // Create a scanner object
         Scanner scanner = new Scanner(System.in);
@@ -67,7 +26,7 @@ public class Main {
         // user input
         while (true) {
             try {
-                switch (userSelection()){
+                mainSelection: switch (userSelection()){
                     case 1: // user is a customer
                         while (true) {
                             switch (customerMenu()) {
@@ -129,8 +88,11 @@ public class Main {
                                         }
                                     }
                                 }
-                                case 3 -> // quit
-                                        System.exit(0);
+                                case 3 -> { // go back
+                                    break mainSelection;
+                                }
+                                case 4 -> // quit
+                                    System.exit(0);
                             }
                         }
                     case 2: // user is a staff member
@@ -143,9 +105,14 @@ public class Main {
                                             Thread thread2 = new Thread(dieselAttendant);
                                             thread1.start();
                                             thread2.start();
+                                            Thread.sleep(1000);
+                                            thread1.stop();
+                                            thread2.stop();
                                         }
-                                        case 2 -> //quit
-                                                System.exit(0);
+                                        case 2 -> { // go back
+                                        }
+                                        case 3 -> //
+                                            System.exit(0);
                                     }
                                 }
                                 case 2 -> { // accountant
@@ -187,10 +154,12 @@ public class Main {
                                             plateNum = scanner.nextLine();
                                             accountant.deleteDataFromAccount("account", plateNum);
                                             break;
-                                        case 4: // quit
-                                            System.exit(0);
+                                        case 4: // go back
                                             break;
+                                        case 5: //quit
+                                            System.exit(0);
                                     }
+
                                 }
                                 case 3 -> { // manager
                                     switch (managerMenu()) {
@@ -245,11 +214,17 @@ public class Main {
                                                 System.out.println("Invalid choice of fuel type");
                                             }
                                             break;
-                                        case 4: //quit
-                                            System.exit(0);
+                                        case 4: // go back
                                             break;
+                                        case 5: // quit
+                                            System.exit(0);
                                     }
                                 }
+                                case 4 -> { // go back
+                                    break mainSelection;
+                                }
+                                case 5 -> // quit
+                                    System.exit(0);
                             }
                         }
                     case 3: //quit
@@ -258,7 +233,129 @@ public class Main {
                 }
             } catch (InputMismatchException | ArithmeticException e) {
                 System.out.println("Please Enter a Number Displayed");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    // declare variables
+
+    // global repositories
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why public?
+    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
+
+    private static Customer customer;
+
+    // queues
+    private static Queue petrolQueue1;
+    private static Queue petrolQueue2;
+    private static Queue petrolQueue3;
+    private static Queue petrolQueue4;
+    private static Queue dieselQueue1;
+    private static Queue dieselQueue2;
+    private static Queue dieselQueue3;
+    private static ArrayList<Customer> commonQueue = new ArrayList<>();
+
+    // staff
+    private static Attendant petrolAttendant;
+    private static Attendant dieselAttendant;
+    private static Accountant accountant;
+    private static Manager manager;
+
+    // sets up all the variables to be used
+    public static void initialize(){
+        // queues
+        petrolQueue1 = new Queue("Petrol", 1);
+        petrolQueue2 = new Queue("Petrol", 2);
+        petrolQueue3 = new Queue("Petrol", 3);
+        petrolQueue4 = new Queue("Petrol", 4);
+        dieselQueue1 = new Queue("Diesel", 5);
+        dieselQueue2 = new Queue("Diesel", 6);
+        dieselQueue3 = new Queue("Diesel", 7);
+
+        // Add the *compositions* of dispensers to the repositories
+        dieselRepository.createDispenser(1);
+        dieselRepository.createDispenser(2);
+        dieselRepository.createDispenser(3);
+        octaneRepository.createDispenser(4);
+        octaneRepository.createDispenser(5);
+        octaneRepository.createDispenser(6);
+        octaneRepository.createDispenser(7);
+
+        octaneRepository.setAvailableFuel(100000);
+        dieselRepository.setAvailableFuel(100000);
+
+        octaneRepository.setCapacity(100000);
+        dieselRepository.setCapacity(100000);
+
+        // attendants and their queues
+        petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
+        dieselAttendant = new Attendant("ATT0002", "John Doe");
+
+        petrolAttendant.addQueue(petrolQueue1);
+        petrolAttendant.addQueue(petrolQueue2);
+        petrolAttendant.addQueue(petrolQueue3);
+        petrolAttendant.addQueue(petrolQueue4);
+
+        dieselAttendant.addQueue(dieselQueue1);
+        dieselAttendant.addQueue(dieselQueue2);
+        dieselAttendant.addQueue(dieselQueue3);
+
+        // staff
+        accountant = new Accountant("ACC0001", "Aaron Cho");
+        manager = new Manager("MGR0001", "Mike Hawk");
+
+        // customers
+        customer = new Customer(1, 0, "CUS0005");
+        // customers
+        Customer customer1 = new Customer(1, 0, "INA0124");
+        Customer customer2 = new Customer(5, 0, "TAC0327");
+        Customer customer3 = new Customer(1, 0, "CAR3468");
+        Customer customer4 = new Customer(5, 0, "VJB4815");
+        Customer customer5 = new Customer(1, 0, "KMS6346");
+        Customer customer6 = new Customer(2, 0, "TUK7676");
+        Customer customer7 = new Customer(3, 0, "VRM9417");
+        Customer customer8 = new Customer(4, 1, "BUS1234");
+        Customer customer9 = new Customer(5, 1, "TRK4891");
+        Customer customer10 = new Customer(5, 1, "ALK4849");
+
+        // tickets
+        Ticket ticket = new Ticket("TK0");
+        Ticket ticket1 = new Ticket("TK1");
+        Ticket ticket2 = new Ticket("TK2");
+        Ticket ticket3 = new Ticket("TK3");
+        Ticket ticket4 = new Ticket("TK4");
+        Ticket ticket5 = new Ticket("TK5");
+        Ticket ticket6 = new Ticket("TK6");
+        Ticket ticket7 = new Ticket("TK7");
+        Ticket ticket8 = new Ticket("TK8");
+        Ticket ticket9 = new Ticket("TK9");
+        Ticket ticket10 = new Ticket("TK10");
+
+        // add tickets to customers
+        customer.setTicket(ticket);
+        customer1.setTicket(ticket1);
+        customer2.setTicket(ticket2);
+        customer3.setTicket(ticket3);
+        customer4.setTicket(ticket4);
+        customer5.setTicket(ticket5);
+        customer6.setTicket(ticket6);
+        customer7.setTicket(ticket7);
+        customer8.setTicket(ticket8);
+        customer9.setTicket(ticket9);
+        customer10.setTicket(ticket10);
+
+        // add preset customers to queues
+        petrolQueue1.enqueue(customer1, true);
+        petrolQueue1.enqueue(customer2, true);
+        petrolQueue1.enqueue(customer3, true);
+        petrolQueue2.enqueue(customer4, true);
+        petrolQueue2.enqueue(customer5, true);
+        petrolQueue3.enqueue(customer6, true);
+        petrolQueue4.enqueue(customer7, true);
+        dieselQueue1.enqueue(customer8, true);
+        dieselQueue2.enqueue(customer9, true);
+        dieselQueue3.enqueue(customer10, true);
     }
 }

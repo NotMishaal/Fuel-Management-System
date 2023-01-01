@@ -26,6 +26,22 @@ public class Queue {
         }
     }
 
+    public void enqueue(Customer customer, boolean silent){
+        // Same as previous with optional printing
+        if (isFull()){
+            System.out.println("Queue "+this.getQueueNumber()+" is full");
+        } else {
+            if (front == -1){
+                front = 0;
+            }
+            rear++;
+            customers[rear] = customer;
+            if (!silent) {
+                System.out.println(customer.getLicensePlate() + " Has Been Successfully Added to Queue "+this.getQueueNumber());
+            }
+        }
+    }
+
     public Customer dequeue(){
         // Method to remove customer from queue
         Customer customer;
@@ -40,7 +56,7 @@ public class Queue {
             } else {
                 front++;
             }
-            System.out.println("Removed "+customer+" From their Queue");
+            System.out.println("Removed "+customer.getLicensePlate()+" From their Queue");
             return customer;
         }
     }
@@ -58,13 +74,15 @@ public class Queue {
     public void display(){
         // Method to display queue
         if (isEmpty()){
-            System.out.println("Queue "+this.getQueueNumber()+" is Empty");
+            System.out.println("Queue "+this.getQueueNumber()+" is Empty\n");
         } else {
-            System.out.println("Current Capacity of Queue "+this.getQueueNumber()+": "+customers.length);
-            System.out.println("Customers in Queue "+this.getQueueNumber()+": ");
+            System.out.println("\nQueue "+this.getQueueNumber());
+            int count = 0;
             for (int i = front; i <= rear; i++){
-                System.out.println(customers[i] + " ");
+                count += 1;
             }
+            System.out.println("Current Capacity: "+count+"/"+customers.length);
+            System.out.format("ETA: %.2f mins\n", (count * 2.3)); // prints estimated time to reach dispenser
         }
     }
 

@@ -28,9 +28,10 @@ public class Menu {
         System.out.println("====Select an Option====");
         System.out.println("1. View Queues");
         System.out.println("2. Join a Queue");
-        System.out.println("3. Quit");
+        System.out.println("3. Go Back");
+        System.out.println("4. Quit");
 
-        return userInput(1, 3);
+        return userInput(1, 4);
     }
 
     public static int staffMenu(){
@@ -38,16 +39,19 @@ public class Menu {
         System.out.println("1. Attendant");
         System.out.println("2. Accountant");
         System.out.println("3. Manager");
+        System.out.println("4. Go Back");
+        System.out.println("5. Quit");
 
-        return userInput(1, 3);
+        return userInput(1, 5);
     }
 
     public static int attendantMenu(){
         System.out.println("====Select an Option====");
         System.out.println("1. Dispense Fuel");
-        System.out.println("2. Quit");
+        System.out.println("2. Go Back");
+        System.out.println("3. Quit");
 
-        return userInput(1, 2);
+        return userInput(1, 3);
     }
 
     public static int accountantMenu(){
@@ -55,9 +59,10 @@ public class Menu {
         System.out.println("1. View Accounts");
         System.out.println("2. Add Accounts");
         System.out.println("3. Delete Accounts");
-        System.out.println("4. Quit");
+        System.out.println("4. Go Back");
+        System.out.println("5. Quit");
 
-        return userInput(1,4);
+        return userInput(1,5);
     }
 
     public static int managerMenu(){
@@ -65,8 +70,9 @@ public class Menu {
         System.out.println("1. Verify Repository Capacity");
         System.out.println("2. Refill Repository");
         System.out.println("3. Install Dispenser");
-        System.out.println("4. Quit");
+        System.out.println("4. Go Back");
+        System.out.println("5. Quit");
 
-        return userInput(1, 4);
+        return userInput(1, 5);
     }
 }
