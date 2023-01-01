@@ -12,6 +12,9 @@ import java.util.InputMismatchException;
 import static view.menu.Menu.*;
 
 public class Main {
+    // Initialize repositories
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1);
+    public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
     public static void main(String[] args) {
         // Initialize queues
         //TODO: init all relevant objects
@@ -23,10 +26,6 @@ public class Main {
         Queue dieselQueue2 = new Queue("Diesel", 6);
         Queue dieselQueue3 = new Queue("Diesel", 7);
         ArrayList<Customer> commonQueue = new ArrayList<>();
-
-        // Initialize repositories
-        DieselRepository dieselRepository = new DieselRepository(430, 1);
-        OctaneRepository octaneRepository = new OctaneRepository(450, 2);
 
         // Add the *compositions* of dispensers to the repositories
         dieselRepository.createDispenser(1);
