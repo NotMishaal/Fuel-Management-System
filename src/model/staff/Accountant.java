@@ -39,6 +39,26 @@ public class Accountant extends Staff{
         }
     }
 
+    public boolean deleteDataFromAccount(String tableName,int accountID){
+        //Making a connection
+        String url = "jdbc:mysql://localhost:3306/account";
+
+        //Deleting rows
+        String deleteData = "Delete from "+ tableName +" where Account_ID = " + accountID;
+
+        try {
+            Connection connection = DriverManager.getConnection(url,"root","");
+            Statement stmt = connection.createStatement();
+
+            //Deleting the table
+            stmt.execute(deleteData);
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public boolean removeAccount(String nameOfTheAccountTable){
         //Making a connection
         String url = "jdbc:mysql://localhost:3306/account";
