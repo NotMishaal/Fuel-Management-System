@@ -33,7 +33,7 @@ public class Manager extends Staff{
     }
 
     public boolean installDispenser(OctaneDispenser octaneDispenser){
-        //When installing a new dispenser,
+        // When installing a new dispenser,
         // Function will create a new object of octaneDispenser
         // And add it into the OctaneDispenser arrayList
 

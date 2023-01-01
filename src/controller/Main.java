@@ -1,6 +1,7 @@
 package controller;
 
 import model.customer.Customer;
+import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
 import model.repository.OctaneRepository;
@@ -152,7 +153,7 @@ public class Main {
                                         case 1: // view accounts
                                             Account.readDataFromTheAccountTable("account");
                                         case 2: // delete accounts
-                                            // TODO Account.deleteData(customer.getLicensePlate());
+                                            //accountant.deleteDataFromAccount("account", customer.getLicensePlate());
                                         case 3: // quit
                                             System.exit(0);
                                             break;
@@ -183,11 +184,31 @@ public class Main {
                                                     System.out.println("Invalid quantity, refill failed.");
                                                 }
                                             } else { // fuel type is invalid
-                                                System.out.println("Invalid choice of fuel");
+                                                System.out.println("Invalid choice of fuel type");
                                             }
 
                                         case 3: // install new dispenser
-                                            break;
+                                            System.out.println("Please enter fuel type: "); // get fuel type
+                                            fuelType = scanner.nextLine();
+                                            if (fuelType.equalsIgnoreCase("diesel")){ // fuel type is diesel
+                                                System.out.println("Please enter numeric ID for dispenser: "); // get ID
+                                                String ID = scanner.nextLine();
+                                                try { // Verify input is a number
+                                                    manager.installDispenser(new OctaneDispenser(Integer.parseInt(ID)));
+                                                } catch (Exception e){
+                                                    System.out.println("Invalid ID.");
+                                                }
+                                            } else if (fuelType.equalsIgnoreCase("octane")) { // fuel type is octane
+                                                System.out.println("Please enter numeric ID for dispenser: "); // get ID
+                                                String ID = scanner.nextLine();
+                                                try { // Verify input is a number
+                                                    manager.installDispenser(new OctaneDispenser(Integer.parseInt(ID)));
+                                                } catch (Exception e){
+                                                    System.out.println("Invalid ID");
+                                                }
+                                            } else { // fuel type is invalid
+                                                System.out.println("Invalid choice of fuel type");
+                                            }
                                         case 4: //quit
                                             System.exit(0);
                                             break;
