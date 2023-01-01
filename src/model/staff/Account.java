@@ -98,7 +98,7 @@ public class Account {
                         ", vehicle category type: " + rs.getString("Vehicle_Category_Type") +
                         ", fuel type: "+ rs.getString("Fuel_Type") +
                         ", dispenser id: " + rs.getInt("Dispenser_ID"));
-
+                System.out.println();
             }
         }catch (Exception e){
             System.out.println(e);

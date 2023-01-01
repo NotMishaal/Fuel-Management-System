@@ -62,9 +62,10 @@ public class Menu {
     public static int managerMenu(){
         System.out.println("====Select an Option====");
         System.out.println("1. Verify Repository Capacity");
-        System.out.println("2. Install Dispenser");
-        System.out.println("3. Quit");
+        System.out.println("2. Refill Repository");
+        System.out.println("3. Install Dispenser");
+        System.out.println("4. Quit");
 
-        return userInput(1, 3);
+        return userInput(1, 4);
     }
 }
