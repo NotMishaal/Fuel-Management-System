@@ -96,7 +96,7 @@ public class Main {
         // user input
         while (true) {
             try {
-                switch (userSelection()){
+                mainSelection: switch (userSelection()){
                     case 1: // user is a customer
                         while (true) {
                             switch (customerMenu()) {
@@ -158,8 +158,12 @@ public class Main {
                                         }
                                     }
                                 }
-                                case 3 -> // quit
-                                        System.exit(0);
+                                case 3 -> { // go back
+                                    break mainSelection;
+                                }
+                                case 4 -> { // quit
+                                    System.exit(0);
+                                }
                             }
                         }
                     case 2: // user is a staff member
@@ -173,8 +177,12 @@ public class Main {
                                             thread1.start();
                                             thread2.start();
                                         }
-                                        case 2 -> //quit
-                                                System.exit(0);
+                                        case 2 -> { // go back
+                                            break;
+                                        }
+                                        case 3 -> { //
+                                            System.exit(0);
+                                        }
                                     }
                                 }
                                 case 2 -> { // accountant
@@ -216,10 +224,12 @@ public class Main {
                                             plateNum = scanner.nextLine();
                                             accountant.deleteDataFromAccount("account", plateNum);
                                             break;
-                                        case 4: // quit
-                                            System.exit(0);
+                                        case 4: // go back
                                             break;
+                                        case 5: //quit
+                                            System.exit(0);
                                     }
+
                                 }
                                 case 3 -> { // manager
                                     switch (managerMenu()) {
@@ -274,10 +284,17 @@ public class Main {
                                                 System.out.println("Invalid choice of fuel type");
                                             }
                                             break;
-                                        case 4: //quit
-                                            System.exit(0);
+                                        case 4: // go back
                                             break;
+                                        case 5: // quit
+                                            System.exit(0);
                                     }
+                                }
+                                case 4 -> { // go back
+                                    break mainSelection;
+                                }
+                                case 5 -> { // quit
+                                    System.exit(0);
                                 }
                             }
                         }
