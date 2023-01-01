@@ -44,7 +44,7 @@ public class Main {
         dieselRepository.setCapacity(100000);
         // Initialize staff members
 
-        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
+        Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emilia");
         Attendant dieselAttendant = new Attendant("ATT0002", "John Doe");
 
         petrolAttendant.addQueue(petrolQueue1);
@@ -152,9 +152,10 @@ public class Main {
                                     switch (accountantMenu()) {
                                         case 1: // view accounts
                                             Account.readDataFromTheAccountTable("account");
+                                            break;
                                         case 2: // Add accounts
-                                            System.out.println("Enter the account ID: ");
-                                            int accountID = Integer.parseInt(scanner.nextLine());
+                                            System.out.println("Enter the customer's number plate: ");
+                                            String plateNum = scanner.nextLine();
 
                                             System.out.println("Enter the customer name: ");
                                             String cusName = scanner.nextLine();
@@ -178,10 +179,14 @@ public class Main {
                                             int dispenserID = Integer.parseInt(scanner.nextLine());
 
                                             Account.addDataToTheAccountTable(
-                                                    "account", accountID, accountant.getName(), cusName, payment, fuelDispensed, date, category, fuelType, dispenserID
+                                                    "account", plateNum, accountant.getName(), cusName, payment, fuelDispensed, date, category, fuelType, dispenserID
                                             );
+                                            break;
                                         case 3: // Delete accounts
-                                            //accountant.deleteDataFromAccount("account", customer.getLicensePlate());
+                                            System.out.println("Enter the customer's number plate: ");
+                                            plateNum = scanner.nextLine();
+                                            accountant.deleteDataFromAccount("account", plateNum);
+                                            break;
                                         case 4: // quit
                                             System.exit(0);
                                             break;
@@ -192,6 +197,7 @@ public class Main {
                                         case 1: // verify repo capacity
                                             System.out.println("Diesel level above 500L: " + manager.verifyFuelCapacity(dieselRepository));
                                             System.out.println("Octane level above 500L: " + manager.verifyFuelCapacity(octaneRepository));
+                                            break;
                                         case 2: // refill repo
                                             System.out.println("Please enter fuel type: "); // get fuel type
                                             String fuelType = scanner.nextLine();
@@ -214,6 +220,7 @@ public class Main {
                                             } else { // fuel type is invalid
                                                 System.out.println("Invalid choice of fuel type");
                                             }
+                                            break;
 
                                         case 3: // install new dispenser
                                             System.out.println("Please enter fuel type: "); // get fuel type
@@ -237,6 +244,7 @@ public class Main {
                                             } else { // fuel type is invalid
                                                 System.out.println("Invalid choice of fuel type");
                                             }
+                                            break;
                                         case 4: //quit
                                             System.exit(0);
                                             break;
@@ -249,7 +257,7 @@ public class Main {
                         break;
                 }
             } catch (InputMismatchException | ArithmeticException e) {
-                System.out.println("Please Enter a Number Displayed");;
+                System.out.println("Please Enter a Number Displayed");
             }
         }
     }

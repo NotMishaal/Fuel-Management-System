@@ -53,6 +53,7 @@ public class Accountant extends Staff{
             //Deleting the table
             preparedStatement.setString(1,numberPlate);
             preparedStatement.executeUpdate();
+            System.out.println("Account deleted successfully.");
             return true;
         }catch (Exception e){
             System.out.println(e);
