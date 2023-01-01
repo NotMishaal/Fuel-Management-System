@@ -58,13 +58,15 @@ public class Queue {
     public void display(){
         // Method to display queue
         if (isEmpty()){
-            System.out.println("Queue "+this.getQueueNumber()+" is Empty");
+            System.out.println("Queue "+this.getQueueNumber()+" is Empty\n");
         } else {
-            System.out.println("Current Capacity of Queue "+this.getQueueNumber()+": "+customers.length);
-            System.out.println("Customers in Queue "+this.getQueueNumber()+": ");
+            System.out.println("\nQueue "+this.getQueueNumber());
+            int count = 0;
             for (int i = front; i <= rear; i++){
-                System.out.println(customers[i] + " ");
+                count += 1;
             }
+            System.out.println("Current Capacity: "+count+"/"+customers.length);
+            System.out.println("ETA: "+(count*1.3)+" mins\n");
         }
     }
 

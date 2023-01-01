@@ -14,19 +14,48 @@ import java.util.Scanner;
 import static view.menu.Menu.*;
 
 public class Main {
-    // Initialize repositories
-    public static DieselRepository dieselRepository = new DieselRepository(430, 1);
+    // initialize variables
+
+    // global repositories
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why static?
     public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
+
+    // customers
+    private Customer customer1;
+    private Customer customer2;
+    private Customer customer3;
+    private Customer customer4;
+    private Customer customer5;
+
+    // queues
+    private static Queue petrolQueue1;
+    private static Queue petrolQueue2;
+    private static Queue petrolQueue3;
+    private static Queue petrolQueue4;
+    private static Queue dieselQueue1;
+    private static Queue dieselQueue2;
+    private static Queue dieselQueue3;
+    private static ArrayList<Customer> commonQueue = new ArrayList<>();
+
+    // staff
+    private Attendant petrolAttendant;
+    private Attendant dieselAttendant;
+    private Accountant accountant;
+    private Manager manager;
+
+    //
+
     public static void main(String[] args) {
         // Initialize queues
-        Queue petrolQueue1 = new Queue("Petrol", 1);
-        Queue petrolQueue2 = new Queue("Petrol", 2);
-        Queue petrolQueue3 = new Queue("Petrol", 3);
-        Queue petrolQueue4 = new Queue("Petrol", 4);
-        Queue dieselQueue1 = new Queue("Diesel", 5);
-        Queue dieselQueue2 = new Queue("Diesel", 6);
-        Queue dieselQueue3 = new Queue("Diesel", 7);
-        ArrayList<Customer> commonQueue = new ArrayList<>();
+//        Queue petrolQueue1 = new Queue("Petrol", 1);
+//        Queue petrolQueue2 = new Queue("Petrol", 2);
+//        Queue petrolQueue3 = new Queue("Petrol", 3);
+//        Queue petrolQueue4 = new Queue("Petrol", 4);
+//        Queue dieselQueue1 = new Queue("Diesel", 5);
+//        Queue dieselQueue2 = new Queue("Diesel", 6);
+//        Queue dieselQueue3 = new Queue("Diesel", 7);
+        initialize();
+
 
         // Add the *compositions* of dispensers to the repositories
         dieselRepository.createDispenser(1);
@@ -261,4 +290,16 @@ public class Main {
             }
         }
     }
+
+    // sets up all the variables to be used
+    public static void initialize(){
+        petrolQueue1 = new Queue("Petrol", 1);
+        petrolQueue2 = new Queue("Petrol", 2);
+        petrolQueue3 = new Queue("Petrol", 3);
+        petrolQueue4 = new Queue("Petrol", 4);
+        dieselQueue1 = new Queue("Diesel", 5);
+        dieselQueue2 = new Queue("Diesel", 6);
+        dieselQueue3 = new Queue("Diesel", 7);
+    }
+
 }
