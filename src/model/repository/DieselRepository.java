@@ -67,8 +67,18 @@ public class DieselRepository extends Repository{
         this.listOfDieselDispenser = listOfDieselDispenser;
     }
 
-    public DieselRepository(ArrayList<DieselDispenser> listOfDieselDispenser,double price) {
-        this.listOfDieselDispenser = listOfDieselDispenser;
+    // Composition with the Diesel dispense manager
+    public DieselRepository(ArrayList<DieselDispenser> listOfDieselDispenser,double price, int ID) {
+//        this.listOfDieselDispenser = listOfDieselDispenser;
+        listOfDieselDispenser.add(new DieselDispenser(ID));
         this.price = price;
+    }
+
+    // Method to create a dispenser
+    public boolean createDispenser(int ID){
+        //1. Create a diesel dispenser
+        //2. Add the created dispenser to the list
+        //3. Return boolean value (T if created dispenser added to list)
+        return this.listOfDieselDispenser.add(new DieselDispenser(ID));
     }
 }
