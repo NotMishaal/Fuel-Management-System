@@ -15,7 +15,7 @@ public class Accountant extends Staff{
 
         // SQL statement for creating a new table
         String createTable = "CREATE TABLE IF NOT EXISTS "+nameOfTheAccountTable+ " (\n"
-                + "	Account_ID int(10) NOT NULL,\n"
+                + "	Number_Plate varchar(40) PRIMARY KEY,\n"
                 + "	Accountant_Name varchar(40) NOT NULL,\n"
                 + "	Customer VARCHAR(40) NOT NULL, \n"
                 + "	Paid_Amount double NOT NULL, \n"
@@ -39,19 +39,20 @@ public class Accountant extends Staff{
         }
     }
 
-    public boolean deleteDataFromAccount(String tableName,int accountID){
+    public boolean deleteDataFromAccount(String tableName,String numberPlate){
         //Making a connection
         String url = "jdbc:mysql://localhost:3306/account";
 
         //Deleting rows
-        String deleteData = "Delete from "+ tableName +" where Account_ID = " + accountID;
+        String deleteData = "Delete from "+ tableName +" where Number_Plate = ?";
 
         try {
             Connection connection = DriverManager.getConnection(url,"root","");
-            Statement stmt = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteData);
 
             //Deleting the table
-            stmt.execute(deleteData);
+            preparedStatement.setString(1,numberPlate);
+            preparedStatement.executeUpdate();
             return true;
         }catch (Exception e){
             System.out.println(e);

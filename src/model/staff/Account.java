@@ -32,11 +32,9 @@ public class Account {
             Connection connection = DriverManager.getConnection(url,userName,password);
 
             //Date format when adding the date parameter: "yyyy-MM-dd"
-
-            addDataToTheAccountTable("account",12,"Yujith", "Inuka", 5000, 20, "2020-11-19","Jeep","Petrol",1);
-            addDataToTheAccountTable("account",12,"Yujith","Nepuna",7500,35,"2022-12-29","Car","Petrol",1);
-            addDataToTheAccountTable("account",12,"Yujith","Surath",8900,40,"2022-12-29","Car","Petrol",1);
-
+            addDataToTheAccountTable("account","CBJ 5466","Yujith", "Inuka", 5000, 20, "2020-11-19","Jeep","Petrol",1);
+            addDataToTheAccountTable("account","ABC 123","Yujith","Nepuna",7500,35,"2022-12-29","Car","Petrol",1);
+            addDataToTheAccountTable("account","BCS 345","Yujith","Surath",8900,40,"2022-12-29","Car","Petrol",1);
             readDataFromTheAccountTable("account");
             displayStats("account");
             //Closing the connection
@@ -47,15 +45,15 @@ public class Account {
         }
     }
 
-    public static void addDataToTheAccountTable(String tableName,int accountID,String accountantName,String customerName,double paidAmount,double fuelDispensed,String pumpedDate,String vehicleCategoryType,String fuelType, int dispenserID){
+    public static void addDataToTheAccountTable(String tableName,String NumberPlate,String accountantName,String customerName,double paidAmount,double fuelDispensed,String pumpedDate,String vehicleCategoryType,String fuelType, int dispenserID){
         //This is to add new data to the account table
         String url = "jdbc:mysql://localhost:3306/account";
         try {
             Connection connection = DriverManager.getConnection(url,"root","");
             Statement statement = connection.createStatement();
-            String query = "insert into " +tableName + "(Account_ID,Accountant_Name,Customer,Paid_Amount,Fuel_Dispensed,Pumped_Date,Vehicle_Category_Type,Fuel_Type,Dispenser_ID) values(?,?,?,?,?,?,?,?,?)";
+            String query = "insert into " +tableName + "(Number_Plate,Accountant_Name,Customer,Paid_Amount,Fuel_Dispensed,Pumped_Date,Vehicle_Category_Type,Fuel_Type,Dispenser_ID) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1,accountID);
+            preparedStmt.setString(1,NumberPlate);
             preparedStmt.setString(2,accountantName);
             preparedStmt.setString(3,customerName);
             preparedStmt.setDouble(4,paidAmount);
@@ -89,7 +87,7 @@ public class Account {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(displayTable);
             while (rs.next()){
-                System.out.println("Account ID: "+rs.getInt("Account_ID") +
+                System.out.println("Number Plate: "+rs.getString("Number_Plate") +
                         ", accountant name: " + rs.getString("Accountant_Name") +
                         ", customer name: " + rs.getString("Customer") +
                         ", paid amount: " + rs.getDouble("Paid_Amount") +
