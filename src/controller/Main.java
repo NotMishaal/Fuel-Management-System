@@ -8,6 +8,7 @@ import model.staff.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static view.menu.Menu.*;
 
@@ -35,6 +36,8 @@ public class Main {
         octaneRepository.createDispenser(6);
         octaneRepository.createDispenser(7);
 
+        octaneRepository.setAvailableFuel(100000);
+        dieselRepository.setAvailableFuel(100000);
         // Initialize staff members
 
         Attendant petrolAttendant = new Attendant("ATT0001", "Luke Emia");
@@ -53,6 +56,9 @@ public class Main {
 
         Accountant accountant = new Accountant("ACC0001", "Aaron Cho");
         Manager manager = new Manager("MGR0001", "Mike Hawk");
+
+        // Create a scanner object
+        Scanner scanner = new Scanner(System.in);
 
         // user input
         while (true) {
@@ -152,10 +158,30 @@ public class Main {
                                 case 3 -> { // manager
                                     switch (managerMenu()) {
                                         case 1: // verify repo capacity
-                                            System.out.println("Available diesel: " + dieselRepository.getAvailableFuel());
-                                            System.out.println("Available octane: " + octaneRepository.getAvailableFuel());
+                                            System.out.println("Diesel level above 500L: " + manager.verifyFuelCapacity(dieselRepository));
+                                            System.out.println("Octane level above 500L: " + manager.verifyFuelCapacity(octaneRepository));
                                         case 2: // refill repo
-                                            break;
+                                            System.out.println("Please enter fuel type: "); // get fuel type
+                                            if (scanner.nextLine().equalsIgnoreCase("diesel")){ // fuel type is diesel
+                                                System.out.println("Please enter amount in liters: "); // get qnt
+                                                String amount = scanner.nextLine();
+                                                try { // Verify input is a number
+                                                    manager.refillRepository(dieselRepository, Double.parseDouble(amount));
+                                                } catch (Exception e){
+                                                    System.out.println("Invalid quantity, refill failed.");
+                                                }
+                                            } else if (scanner.nextLine().equalsIgnoreCase("octane")) { // fuel type is octane
+                                                System.out.println("Please enter amount in liters: "); // get qnt
+                                                String amount = scanner.nextLine();
+                                                try { // Verify input is a number
+                                                    manager.refillRepository(octaneRepository, Double.parseDouble(amount));
+                                                } catch (Exception e){
+                                                    System.out.println("Invalid quantity, refill failed.");
+                                                }
+                                            } else { // fuel type is invalid
+                                                System.out.println("Invalid choice of fuel");
+                                            }
+
                                         case 3: // install new dispenser
                                             break;
                                         case 4: //quit
@@ -174,5 +200,4 @@ public class Main {
             }
         }
     }
-
 }
