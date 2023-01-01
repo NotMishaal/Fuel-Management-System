@@ -48,9 +48,10 @@ public class Main {
         octaneDispensers.add(octaneDispenser3);
         octaneDispensers.add(octaneDispenser4);
 
+        // TODO init properly according to the composition methods
         // Initialize repositories
-        DieselRepository dieselRepository = new DieselRepository(dieselDispensers, 430);
-        OctaneRepository octaneRepository = new OctaneRepository(octaneDispensers, 450);
+//        DieselRepository dieselRepository = new DieselRepository(dieselDispensers, 430);
+//        OctaneRepository octaneRepository = new OctaneRepository(octaneDispensers, 450);
 
 
         // user input

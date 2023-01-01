@@ -5,9 +5,14 @@ import java.util.HashMap;
 
 public class DateTime {
     private String fuelType;
-    private HashMap<Date, Double> dieselDispensed;
-    private HashMap<Date, Double> octaneDispensed;
+    private HashMap<Date, Double> fuelQuantityDispensed;
 
+    public DateTime(String fuelType, HashMap<Date, Double> fuelQuantityDispensed) {
+        this.fuelType = fuelType;
+        this.fuelQuantityDispensed = fuelQuantityDispensed;
+    }
+
+    // Getters and setters
     public String getFuelType() {
         return fuelType;
     }
@@ -16,24 +21,17 @@ public class DateTime {
         this.fuelType = fuelType;
     }
 
-    public HashMap<Date, Double> getDieselDispensed() {
-        return dieselDispensed;
+    public HashMap<Date, Double> getFuelQuantityDispensed() {
+        return fuelQuantityDispensed;
     }
 
-    public void setDieselDispensed(HashMap<Date, Double> dieselDispensed) {
-        this.dieselDispensed = dieselDispensed;
-    }
-
-    public HashMap<Date, Double> getOctaneDispensed() {
-        return octaneDispensed;
-    }
-
-    public void setOctaneDispensed(HashMap<Date, Double> octaneDispensed) {
-        this.octaneDispensed = octaneDispensed;
+    public void setFuelQuantityDispensed(HashMap<Date, Double> fuelQuantityDispensed) {
+        this.fuelQuantityDispensed = fuelQuantityDispensed;
     }
 
     public double calculateFuelDispensed(Date date){
         // This method calculates the total fuel dispensed on a given date
+        // TODO get data from database
         return 0;
     }
 }

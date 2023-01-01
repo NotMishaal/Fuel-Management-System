@@ -1,5 +1,6 @@
 package model.repository;
 
+import model.dispenser.DieselDispenser;
 import model.dispenser.OctaneDispenser;
 import model.staff.Manager;
 
@@ -67,8 +68,17 @@ public class OctaneRepository extends Repository{
         this.listOfOctaneDispenser = listOfOctaneDispenser;
     }
 
-    public OctaneRepository(ArrayList<OctaneDispenser> listOfOctaneDispenser, double price) {
-        this.listOfOctaneDispenser = listOfOctaneDispenser;
+    // Composition with the octane dispense manager
+    public OctaneRepository(ArrayList<OctaneDispenser> listOfOctaneDispenser, double price, int ID) {
+        listOfOctaneDispenser.add(new OctaneDispenser(ID));
         this.price=price;
+    }
+
+    // Method to create a dispenser
+    public boolean createDispenser(int ID){
+        //1. Create a diesel dispenser
+        //2. Add the created dispenser to the list
+        //3. Return boolean value (T if created dispenser added to list)
+        return this.listOfOctaneDispenser.add(new OctaneDispenser(ID));
     }
 }

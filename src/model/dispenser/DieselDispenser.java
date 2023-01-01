@@ -7,7 +7,6 @@ public class DieselDispenser implements FuelDispenseManager{
     private double fuelDispensed;
     private DieselRepository dieselRepository;
     private double availableDiesel = 10000;
-
     private boolean isSuspended = false;
 
     // Main constructor
@@ -62,6 +61,7 @@ public class DieselDispenser implements FuelDispenseManager{
 
     @Override
     public void dispenseFuel(double quantity) {
+        // TODO get the available fuel from the repo 
         // Method to dispense diesel to customer
         if (this.availableDiesel > 500){
             if((this.availableDiesel-500) > quantity){
