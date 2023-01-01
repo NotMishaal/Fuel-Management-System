@@ -21,8 +21,8 @@ public class Manager extends Staff{
         // And add it into the DieselDispenser arrayList
 
         //Check if that dieselDispenser already exists
-        for (int i=0;i<listOfDieselDispenser.size();i++){
-            if (listOfDieselDispenser.get(i).equals(dieselDispenser)){
+        for (DieselDispenser dispenser : listOfDieselDispenser) {
+            if (dispenser.equals(dieselDispenser)) {
                 System.out.println("Diesel dispenser already exists, add a different one");
                 return false;
             }
@@ -38,8 +38,8 @@ public class Manager extends Staff{
         // And add it into the OctaneDispenser arrayList
 
         //Check if that octaneDispenser already exists
-        for (int i=0;i<listOfOctaneDispenser.size();i++){
-            if (listOfOctaneDispenser.get(i).equals(octaneDispenser)){
+        for (OctaneDispenser dispenser : listOfOctaneDispenser) {
+            if (dispenser.equals(octaneDispenser)) {
                 System.out.println("Octane dispenser already exists, add a different one");
                 return false;
             }
@@ -53,17 +53,13 @@ public class Manager extends Staff{
         //This method is to check if there are available fuel to dispense
         //And returns true if there is
         //Else return false
-        if (r.getAvailableFuel()>500){
-            return true;
-        }else {
-            return false;
-        }
+        return r.getAvailableFuel() > 500;
     }
 
     public boolean refillRepository(Repository r, double quantity){
         //This function will refill the fuel amount if the fuel capacity is less than 500L
         if (!verifyFuelCapacity(r)){
-            r.setCapacity(quantity);
+            r.setAvailableFuel(r.getAvailableFuel()+quantity);
             return true;
         } else {
             return false;
