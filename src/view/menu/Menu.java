@@ -70,9 +70,10 @@ public class Menu {
         System.out.println("1. Verify Repository Capacity");
         System.out.println("2. Refill Repository");
         System.out.println("3. Install Dispenser");
-        System.out.println("4. Go Back");
-        System.out.println("5. Quit");
+        System.out.println("4. Total fuel dispensed in a day");
+        System.out.println("5. Go Back");
+        System.out.println("6. Quit");
 
-        return userInput(1, 5);
+        return userInput(1, 6);
     }
 }

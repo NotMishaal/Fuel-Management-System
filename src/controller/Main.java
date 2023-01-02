@@ -2,6 +2,7 @@ package controller;
 
 import model.customer.Customer;
 import model.customer.Ticket;
+import model.dispenser.DateTime;
 import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
@@ -215,9 +216,13 @@ public class Main {
                                                 System.out.println("Invalid choice of fuel type");
                                             }
                                             break;
-                                        case 4: // go back
+                                        case 4:
+                                            System.out.println("Please enter date(yyyy-mm-dd): ");
+                                            DateTime dateTime = new DateTime();
+                                            dateTime.calculateFuelDispensed(scanner.nextLine());
+                                        case 5: // go back
                                             break;
-                                        case 5: // quit
+                                        case 6: // quit
                                             System.exit(0);
                                     }
                                 }
