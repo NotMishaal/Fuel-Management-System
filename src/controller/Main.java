@@ -3,7 +3,6 @@ package controller;
 import model.customer.Customer;
 import model.customer.Ticket;
 import model.dispenser.DateTime;
-import model.dispenser.OctaneDispenser;
 import model.queue.Queue;
 import model.repository.DieselRepository;
 import model.repository.OctaneRepository;
@@ -156,9 +155,11 @@ public class Main {
                                             plateNum = scanner.nextLine();
                                             accountant.deleteDataFromAccount("account", plateNum);
                                             break;
-                                        case 4: // go back
+                                        case 4:
+                                            Account.displayStats("account");
+                                        case 5: // go back
                                             break;
-                                        case 5: //quit
+                                        case 6: //quit
                                             System.exit(0);
                                     }
 

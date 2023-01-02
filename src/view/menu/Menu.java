@@ -59,6 +59,7 @@ public class Menu {
         System.out.println("1. View Accounts");
         System.out.println("2. Add Accounts");
         System.out.println("3. Delete Accounts");
+        System.out.println("4. View statistics");
         System.out.println("4. Go Back");
         System.out.println("5. Quit");
 
