@@ -39,7 +39,7 @@ public class DateTime {
             ResultSet rs = stat.executeQuery("select * from account");
             double totalFuelDispensed = 0;
             while (rs.next())
-                if (Objects.equals(rs.getString(6), "2020-11-19")){
+                if (Objects.equals(rs.getString(6), date)){
                     totalFuelDispensed += rs.getDouble(5);
                 }
             System.out.println("Total fuel dispensed on "+ date + " is " + totalFuelDispensed);
@@ -58,4 +58,5 @@ public class DateTime {
         );
         return con;
     }
+    public DateTime(){}
 }
