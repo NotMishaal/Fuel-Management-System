@@ -81,7 +81,4 @@ public class Accountant extends Staff{
             return false;
         }
     }
-    public static void displayAccountSummery(String nameOfTheAccountTable,Account account){
-        account.readDataFromTheAccountTable(nameOfTheAccountTable);
-    }
 }
