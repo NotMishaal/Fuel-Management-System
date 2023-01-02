@@ -14,31 +14,6 @@ public class Account {
         this.accountant = accountant;
     }
 
-    public static void main(String[] args) {
-        //This is to create the database
-        String url = "jdbc:mysql://localhost:3306/account";
-        String userName = "root";
-        String password = "";
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection connection = DriverManager.getConnection(url,userName,password);
-
-            //Date format when adding the date parameter: "yyyy-MM-dd"
-            addDataToTheAccountTable("account","CBJ 5466","Yujith", "Inuka", 5000, 20, "2020-11-19","Jeep","Petrol",1);
-            addDataToTheAccountTable("account","ABC 123","Yujith","Nepuna",7500,35,"2022-12-29","Car","Petrol",1);
-            addDataToTheAccountTable("account","BCS 345","Yujith","Surath",8900,40,"2022-12-29","Car","Petrol",1);
-            readDataFromTheAccountTable("account");
-            displayStats("account");
-            //Closing the connection
-            connection.close();
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
     public static void addDataToTheAccountTable(String tableName,String NumberPlate,String accountantName,String customerName,double paidAmount,double fuelDispensed,String pumpedDate,String vehicleCategoryType,String fuelType, int dispenserID){
         //This is to add new data to the account table
         String url = "jdbc:mysql://localhost:3306/account";
