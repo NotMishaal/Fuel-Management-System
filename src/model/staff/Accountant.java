@@ -81,33 +81,4 @@ public class Accountant extends Staff{
             return false;
         }
     }
-
-//    public boolean removeAccount(Account account){
-//        int indexOfTheAccount = listOfAccounts.indexOf(account); // This is to check if the object parsed exist in the list
-//        if (indexOfTheAccount == -1){
-//            //If the object does not exist in the list
-//            System.out.println("Account not found");
-//            return false;
-//        }else {
-//            listOfAccounts.remove(indexOfTheAccount);
-//            System.out.println("Account removed successfully");
-//            return true;
-//        }
-//    }
-
-    //    public boolean addAccount(Account account){
-//        int indexOfTheAccount = listOfAccounts.indexOf(account);
-//        if (indexOfTheAccount == -1){
-//            //If the object does not exist in the list
-//            this.listOfAccounts.add(account);
-//            System.out.println("Account added successfully");
-//            return true;
-//        }else {
-//            System.out.println("Account already exists");
-//            return false;
-//        }
-//    }
-    public static void displayAccountSummery(String nameOfTheAccountTable,Account account){
-        account.readDataFromTheAccountTable(nameOfTheAccountTable);
-    }
 }
