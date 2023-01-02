@@ -60,10 +60,10 @@ public class Menu {
         System.out.println("2. Add Accounts");
         System.out.println("3. Delete Accounts");
         System.out.println("4. View statistics");
-        System.out.println("4. Go Back");
-        System.out.println("5. Quit");
+        System.out.println("5. Go Back");
+        System.out.println("6. Quit");
 
-        return userInput(1,5);
+        return userInput(1,6);
     }
 
     public static int managerMenu(){
