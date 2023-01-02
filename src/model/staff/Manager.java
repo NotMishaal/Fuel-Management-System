@@ -2,6 +2,8 @@ package model.staff;
 
 import model.dispenser.DieselDispenser;
 import model.dispenser.OctaneDispenser;
+import model.repository.DieselRepository;
+import model.repository.OctaneRepository;
 import model.repository.Repository;
 
 import java.util.ArrayList;
@@ -15,38 +17,37 @@ public class Manager extends Staff{
         super(staffID, name);
     }
 
-    public boolean installDispenser(DieselDispenser dieselDispenser){
-        //When installing a new dispenser,
+    public void installDispenser(int ID, DieselRepository dieselRepository){
+        // When installing a new dispenser,
         // Function will create a new object of DieselDispenser
         // And add it into the DieselDispenser arrayList
 
-        //Check if that dieselDispenser already exists
-        for (DieselDispenser dispenser : listOfDieselDispenser) {
-            if (dispenser.equals(dieselDispenser)) {
+        // Check if that dieselDispenser already exists
+        for (DieselDispenser dispenser : dieselRepository.getListOfDieselDispenser()) {
+            if (dispenser.getDispenserID() == ID) {
                 System.out.println("Diesel dispenser already exists, add a different one");
-                return false;
+                return;
             }
         }
-        listOfDieselDispenser.add(dieselDispenser);
+        dieselRepository.createDispenser(ID);
         System.out.println("Diesel dispenser added successfully");
-        return true;
     }
 
-    public boolean installDispenser(OctaneDispenser octaneDispenser){
+    public void installDispenser(int ID, OctaneRepository octaneRepository){
         // When installing a new dispenser,
         // Function will create a new object of octaneDispenser
         // And add it into the OctaneDispenser arrayList
 
         //Check if that octaneDispenser already exists
-        for (OctaneDispenser dispenser : listOfOctaneDispenser) {
-            if (dispenser.equals(octaneDispenser)) {
+
+        for (OctaneDispenser dispenser : octaneRepository.getListOfOctaneDispenser()) {
+            if (dispenser.getDispenserID() == ID) {
                 System.out.println("Octane dispenser already exists, add a different one");
-                return false;
+                return;
             }
         }
-        listOfOctaneDispenser.add(octaneDispenser);
+        octaneRepository.createDispenser(ID);
         System.out.println("Octane dispenser added successfully");
-        return true;
     }
 
     public boolean verifyFuelCapacity(Repository r){

@@ -58,6 +58,4 @@ public class DateTime {
         );
         return con;
     }
-
-    public DateTime(){}
 }

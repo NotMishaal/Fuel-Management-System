@@ -146,7 +146,8 @@ public class Main {
                                             int dispenserID = Integer.parseInt(scanner.nextLine());
 
                                             Account.addDataToTheAccountTable(
-                                                    "account", plateNum, accountant.getName(), cusName, payment, fuelDispensed, date, category, fuelType, dispenserID
+                                                    "account", plateNum, accountant.getName(), cusName, payment,
+                                                    fuelDispensed, date, category, fuelType, dispenserID
                                             );
                                             break;
                                         case 3: // Delete accounts
@@ -198,7 +199,7 @@ public class Main {
                                                 System.out.println("Please enter numeric ID for dispenser: "); // get ID
                                                 String ID = scanner.nextLine();
                                                 try { // Verify input is a number
-                                                    manager.installDispenser(new OctaneDispenser(Integer.parseInt(ID)));
+                                                    manager.installDispenser(Integer.parseInt(ID), dieselRepository);
                                                 } catch (Exception e){
                                                     System.out.println("Invalid ID.");
                                                 }
@@ -206,7 +207,7 @@ public class Main {
                                                 System.out.println("Please enter numeric ID for dispenser: "); // get ID
                                                 String ID = scanner.nextLine();
                                                 try { // Verify input is a number
-                                                    manager.installDispenser(new OctaneDispenser(Integer.parseInt(ID)));
+                                                    manager.installDispenser(Integer.parseInt(ID), octaneRepository);
                                                 } catch (Exception e){
                                                     System.out.println("Invalid ID");
                                                 }
@@ -242,7 +243,7 @@ public class Main {
     // declare variables
 
     // global repositories
-    public static DieselRepository dieselRepository = new DieselRepository(430, 1); //TODO: why public?
+    public static DieselRepository dieselRepository = new DieselRepository(430, 1); // TODO: why public?
     public static OctaneRepository octaneRepository = new OctaneRepository(450, 2);
 
     private static Customer customer;
